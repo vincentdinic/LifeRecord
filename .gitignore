@@ -1,0 +1,8 @@
+# key for credential encryption
+/config/master.key
+
+# log files
+/log/*.log
+
+# temp files used by rails and os
+/tmp/
