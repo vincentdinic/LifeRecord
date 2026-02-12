@@ -70,3 +70,4 @@ end
 
 gem "haml-rails"
 gem "html2haml"
+gem "devise", "~> 5.0"
