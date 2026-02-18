@@ -1,12 +1,12 @@
 class FamiliesController < ApplicationController
   before_action :set_family, only: %i[ show edit update destroy ]
 
-  # GET /families or /families.json
+  # GET /families
   def index
     @families = Family.all
   end
 
-  # GET /families/1 or /families/1.json
+  # GET /families/1
   def show
   end
 
@@ -19,41 +19,36 @@ class FamiliesController < ApplicationController
   def edit
   end
 
-  # POST /families or /families.json
+  # POST /families
   def create
     @family = Family.new(family_params)
 
     respond_to do |format|
       if @family.save
         format.html { redirect_to @family, notice: "Family was successfully created." }
-        format.json { render :show, status: :created, location: @family }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @family.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /families/1 or /families/1.json
+  # PATCH/PUT /families/1
   def update
     respond_to do |format|
       if @family.update(family_params)
         format.html { redirect_to @family, notice: "Family was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @family }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @family.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /families/1 or /families/1.json
+  # DELETE /families/1
   def destroy
     @family.destroy!
 
     respond_to do |format|
       format.html { redirect_to families_path, notice: "Family was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
     end
   end
 
