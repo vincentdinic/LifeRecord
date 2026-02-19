@@ -1,0 +1,35 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+    .container-fluid
+        = link_to root_path, class: "navbar-brand" do
+            = image_tag "life_record.png",
+                width: 160,
+                class: "ms-2"
+        %button.navbar-toggler{ type: "button",
+                                    data: { bs_toggle: "collapse", bs_target: "#navbarSupportedContent" },
+                                    aria: { controls: "navbarSupportedContent",
+                                            expanded: "false",
+                                            label: "Toggle navigation" } }
+            %span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbarSupportedContent
+            %ul.navbar-nav.me-auto.mb-lg-0.fs-4
+                - if current_user
+                    %li.nav-item.ms-5.me-5
+                        - if current_user.families.count > 1
+                            = link_to "Families", "#", class: "nav-link"
+                        - else
+                            = link_to "Family", root_path, class: "nav-link"
+                    %li.nav-item.me-5
+                        = link_to "Calendar", "#", class: "nav-link"
+                    %li.nav-item.me-5
+                        = link_to "Finances", "#", class: "nav-link"
+                    %li.nav-item.me-5
+                        = link_to "Property", "#", class: "nav-link"
+                    %li.nav-item.me-5
+                        = link_to "Vehicles", "#", class: "nav-link"
+
+                - else 
+                    %li.nav-item.ms-5.me-5
+                        = link_to "About", "#", class: "nav-link"
+
+            %ul.navbar-nav.ms-auto.fs-4
+                = render "users/session_manager"

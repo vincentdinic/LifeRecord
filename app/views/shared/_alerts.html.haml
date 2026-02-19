@@ -1,0 +1,8 @@
+- flash.each do |type, message|
+    - bootstrap_class = case type.to_sym
+        when :notice then "alert alert-info"
+        when :alert  then "alert alert-danger"
+        when :success then "alert alert-success"
+        else "alert alert-secondary"
+    %div{class: bootstrap_class}
+        = message
