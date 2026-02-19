@@ -1,0 +1,23 @@
+- if current_user
+  %li.nav-item.dropdown.navbar-rt
+    %a.nav-link.dropdown-toggle{ 
+      href: "#",
+      id: "navbarDropdown",
+      role: "button",
+      data: { bs_toggle: "dropdown" },
+      aria: { expanded: "false" }
+    }
+      Account
+
+    %ul.dropdown-menu.dropdown-menu-dark.bg-dark{ aria: { labelledby: "navbarDropdown" } }
+      %li.dropdown-item
+        = link_to "Settings", edit_user_registration_path
+      %li
+        %hr.dropdown-divider
+      %li
+        = button_to "Log out", destroy_user_session_path,
+          method: :delete,
+          class: "dropdown-item"
+- else
+  %li.nav-item
+    = link_to "Log In", new_user_session_path, class: 'nav-link'
