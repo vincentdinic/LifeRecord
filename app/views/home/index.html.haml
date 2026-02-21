@@ -10,6 +10,5 @@
                 .text-center.fw-bold.mt-3
                     Life Record
             - if current_user
-                %h5.text-center Welcome back, current_user.first_name
-            - else
-                %h5.text-center Sign up or Log in
+                %h5.text-center 
+                    Welcome, #{ current_user.first_name }

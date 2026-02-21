@@ -1,0 +1,12 @@
+- content_for :title, "Onboarding"
+
+.container.w-75
+  .row.mt-2.mb-2
+    .col-md-6.mx-auto
+      %h1.jumbotron.text-center Welcome
+
+      .row.center.text-center#new-family
+        .col.md-3.mx-auto.w-75
+          Create a Family
+          %br
+          = link_to "New Family", new_family_path, class: "btn btn-primary"
