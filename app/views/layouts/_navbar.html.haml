@@ -3,7 +3,7 @@
         = link_to root_path, class: "navbar-brand" do
             = image_tag "life_record.png",
                 width: 160,
-                class: "ms-2"
+                class: "ms-2 me-5"
         %button.navbar-toggler{ type: "button",
                                     data: { bs_toggle: "collapse", bs_target: "#navbarSupportedContent" },
                                     aria: { controls: "navbarSupportedContent",
@@ -13,22 +13,36 @@
         .collapse.navbar-collapse#navbarSupportedContent
             %ul.navbar-nav.me-auto.mb-lg-0.fs-4
                 - if current_user
-                    %li.nav-item.ms-5.me-5
-                        - if current_user.families.count > 1
-                            = link_to "Families", "#", class: "nav-link"
-                        - else
-                            = link_to "Family", root_path, class: "nav-link"
-                    %li.nav-item.me-5
-                        = link_to "Calendar", "#", class: "nav-link"
-                    %li.nav-item.me-5
-                        = link_to "Finances", "#", class: "nav-link"
-                    %li.nav-item.me-5
-                        = link_to "Property", "#", class: "nav-link"
-                    %li.nav-item.me-5
-                        = link_to "Vehicles", "#", class: "nav-link"
+                    - if current_user.families.any?
+                        %li.nav-item.dropdown.me-5
+                            - if current_user.families.size > 1
+                                = link_to "Families",
+                                            "#",
+                                            class: "nav-link dropdown-toggle",
+                                            role: "button",
+                                            data: { bs_toggle: "dropdown" },
+                                            aria: { expanded: "false" }
+
+                                %ul.dropdown-menu
+                                    - current_user.families.each do |family|
+                                        %li
+                                            = link_to family.name,
+                                                    family_path(family),
+                                                    class: "dropdown-item"
+                                                       
+                            - else
+                                = link_to "Family", family_path(@current_family), class: "nav-link"
+                        %li.nav-item.me-5
+                            = link_to "Calendar", "#", class: "nav-link"
+                        %li.nav-item.me-5
+                            = link_to "Finances", "#", class: "nav-link"
+                        %li.nav-item.me-5
+                            = link_to "Property", "#", class: "nav-link"
+                        %li.nav-item.me-5
+                            = link_to "Vehicles", "#", class: "nav-link"
 
                 - else 
-                    %li.nav-item.ms-5.me-5
+                    %li.nav-item.me-5
                         = link_to "About", "#", class: "nav-link"
 
             %ul.navbar-nav.ms-auto.fs-4
