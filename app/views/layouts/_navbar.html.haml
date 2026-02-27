@@ -29,9 +29,15 @@
                                             = link_to family.name,
                                                     family_path(family),
                                                     class: "dropdown-item"
-                                                       
+                                    %li
+                                        = link_to "Add a Family",
+                                                  new_family_path,
+                                                  class: "dropdown-item"
                             - else
                                 = link_to "Family", family_path(@current_family), class: "nav-link"
+                                -# = link_to "Add a Family",
+                                -#           new_family_path,
+                                -#           class: "nav-link"
                         %li.nav-item.me-5
                             = link_to "Calendar", "#", class: "nav-link"
                         %li.nav-item.me-5
