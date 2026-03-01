@@ -1,0 +1,10 @@
+// config test
+$primary: #1763a1;
+
+.header-card {
+  margin-top: 50px;
+  border: 5px solid $primary;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

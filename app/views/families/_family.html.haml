@@ -1,6 +1,8 @@
-%div{id: dom_id(family)}
-  %p
-    %strong Name:
-    = family.name
+.container
+  .header-card
+    %h1
+      = family.name
+      = link_to "Edit", edit_family_path(@family), class: "btn btn-primary"
+      = button_to "Destroy", @family, method: :delete, class: "btn btn-danger"
 
-
+  .body-card
