@@ -8,9 +8,8 @@
     %meta{:content => "Life Record", :name => "application-name"}/
     %meta{:content => "yes", :name => "mobile-web-app-capable"}/
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+    = javascript_include_tag "application", type: "module", "data-turbo-track": "reload"
     = render 'layouts/default'
-
     = yield :head
     %link{:href => "/icon.png", :rel => "icon", :type => "image/png"}/
     %link{:href => "/icon.svg", :rel => "icon", :type => "image/svg+xml"}/

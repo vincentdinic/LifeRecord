@@ -1,10 +1,33 @@
-// config test
+
 $primary: #1763a1;
 
 .header-card {
   margin-top: 50px;
-  border: 5px solid $primary;
+  border: 1px solid $primary;
+  border-radius: 8px;
+  padding: 20px;
+  background: white;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.record-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.action-btn {
+  width: 110px;
+}
+
+.body-card {
+  margin-top: 25px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background: white;
 }

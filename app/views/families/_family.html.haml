@@ -1,8 +1,22 @@
 .container
   .header-card
-    %h1
-      = family.name
-      = link_to "Edit", edit_family_path(@family), class: "btn btn-primary"
-      = button_to "Destroy", @family, method: :delete, class: "btn btn-danger"
+    .row.align-items-center
+      .col-4
+      .col-4.text-center
+        .title
+          = "#{@family.name.titleize} #{'Family' unless @family.name.include?("Family") || @family.name.include?("family")}"
+      .col-4
+        .record-actions
+          = link_to "Edit", edit_family_path(@family), class: "btn btn-primary action-btn"
 
   .body-card
+    %h3.mb-3
+      Family Members
+
+    - if @family.users.any?
+      %ul.list-group
+        - @family.users.each do |family_member|
+          %li.list-group-item
+            = link_to family_member.name, family_member
+    - else
+      %p.text-muted No family members added yet.
