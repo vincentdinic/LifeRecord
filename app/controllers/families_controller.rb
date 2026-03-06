@@ -1,11 +1,6 @@
 class FamiliesController < ApplicationController
   before_action :set_family, only: %i[ show edit update destroy ]
 
-  # GET /families
-  def index
-    @families = Family.all
-  end
-
   # GET /families/1
   def show
   end
@@ -23,12 +18,11 @@ class FamiliesController < ApplicationController
   def create
     @family = Family.new(family_params)
 
-    respond_to do |format|
-      if @family.save
-        format.html { redirect_to @family, notice: "Family was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @family.save
+      current_user.families << @family
+      redirect_to @family
+    else
+      render :new
     end
   end
 
@@ -55,7 +49,7 @@ class FamiliesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_family
-      @family = Family.find(params.expect(:id))
+      @family = current_user.families.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
