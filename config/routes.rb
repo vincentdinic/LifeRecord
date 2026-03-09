@@ -17,6 +17,12 @@ Rails.application.routes.draw do
     member do
       patch :switch
     end
+
+    collection do
+      get :join
+      post :join
+    end
+
     resources :family_users, only: [ :index, :create, :update, :destroy ]
   end
 

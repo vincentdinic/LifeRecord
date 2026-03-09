@@ -1,0 +1,8 @@
+.body-card
+  = form_with url: join_families_path, method: :post, local: true do |f|
+    %div.mb-3
+      = f.label :join_code, "Enter Family Join Code", class: "form-label"
+      = f.text_field :join_code, class: "form-control"
+
+    .record-actions
+      = f.submit "Join Family", class: "btn btn-primary action-btn"

@@ -1,12 +1,24 @@
 - content_for :title, "Editing family"
 
-%h1 Editing family
+.container
+  .header-card
+    .row
+      .text-center
+        %h1
+          Editing Family
 
-= render "form", family: @family
+  .body-card
+    .row
+      = render "form", family: @family
+    .record-actions.mb-1
+      = button_to "Destroy", @family, method: :delete, class: "btn btn-danger"
+    .record-actions.mb-1
+      = link_to "Back", @family, class: "action-btn btn btn-primary"  
+  .row.justify-content-center
+    .body-card.w-25
+      .text-center
+        %h4 Join Code
+        %p
+          = @family.join_code
 
-%br
-
-%div
-  = link_to "Show this family", @family
-  |
-  = link_to "Back to families", families_path
+    
