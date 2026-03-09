@@ -10,19 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_15_171445) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_09_002605) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "families", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.string "join_code"
     t.string "name", null: false
     t.datetime "updated_at", null: false
+    t.index ["join_code"], name: "index_families_on_join_code", unique: true
   end
 
-  create_table "family_users", id: false, force: :cascade do |t|
+  create_table "family_users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.bigint "family_id", null: false
+    t.integer "role", default: 0, null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["family_id"], name: "index_family_users_on_family_id"

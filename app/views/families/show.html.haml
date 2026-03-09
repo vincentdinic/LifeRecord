@@ -1,10 +1,23 @@
-%p{style: "color: green"}= notice
+.container
+  .header-card
+    .row.align-items-center
+      .col-4
+      .col-4.text-center
+        .title
+          = "#{@family.name.titleize} #{'Family' unless @family.name.include?("Family") || @family.name.include?("family")}"
+      .col-4
+        - if @family.admin?(current_user)
+          .record-actions
+            = link_to "Edit", edit_family_path(@family), class: "btn btn-primary action-btn"
 
-= render @family
+  .body-card
+    %h3.mb-3
+      Family Members
 
-%div
-  = link_to "Edit this family", edit_family_path(@family)
-  |
-  = link_to "Back to families", families_path
-
-  = button_to "Destroy this family", @family, method: :delete
+    - if @family.users.any?
+      %ul.list-group
+        - @family.users.each do |family_member|
+          %li.list-group-item
+            = link_to family_member.name, family_member
+    - else
+      %p.text-muted No family members added yet.
