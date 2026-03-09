@@ -1,8 +1,16 @@
-.body-card
-  = form_with url: join_families_path, method: :post, local: true do |f|
-    %div.mb-3
-      = f.label :join_code, "Enter Family Join Code", class: "form-label"
-      = f.text_field :join_code, class: "form-control"
-
-    .record-actions
-      = f.submit "Join Family", class: "btn btn-primary action-btn"
+.container
+  .header-card
+    %h1
+      Join Family
+  .body-card
+    = form_with url: join_families_path, method: :post, local: true do |f|
+      .form-group.mb-3
+        = f.label :join_code, "Enter Family Join Code", class: "form-label"
+        = f.text_field :join_code,
+          minlength: 6,
+          maxlength: 6,
+          required: true,
+          class: "form-control text-uppercase w-25"
+        .form-text.mt-2
+          (6 characters)
+      = f.submit "Join Family", class: "btn btn-success"

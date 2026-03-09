@@ -1,10 +1,7 @@
-- content_for :title, "New family"
-
-%h1 New family
-
-= render "form", family: @family
-
-%br
-
-%div
-  = link_to "Back to families", families_path
+- content_for :title, "New Family"
+.container
+  .header-card
+    %h1
+      Create Family
+  .body-card
+    = render "form", family: @family

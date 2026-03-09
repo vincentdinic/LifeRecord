@@ -1,13 +1,8 @@
-- if family.errors.any?
-  .text-danger.mb-3
-    %h4= "#{pluralize(family.errors.count, "error")} prohibited this family from being saved:"
-    %ul
-      - family.errors.each do |error|
-        %li= error.full_message
-
 = form_with(model: family, local: true) do |form|
-  .mb-3
+  .form-group.mb-3
     = form.label :name, class: "form-label"
-    = form.text_field :name, class: "form-control"
-  .record-actions.mb-1
-    = form.submit "Update", class: "action-btn btn btn-success"
+    = form.text_field :name,
+      required: true,
+      class: "form-control w-50"
+  .record-actions.mb-5
+    = form.submit "Save", class: "action-btn btn btn-success"
