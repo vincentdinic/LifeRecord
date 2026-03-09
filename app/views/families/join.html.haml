@@ -13,4 +13,7 @@
           class: "form-control text-uppercase w-25"
         .form-text.mt-2
           (6 characters)
-      = f.submit "Join Family", class: "btn btn-success"
+      .me-1.mb-1
+        = f.submit "Join Family", class: "btn btn-success"
+        = link_to "Create a Family", new_family_path, class: "btn btn-primary"
+      = link_to "Back", :back

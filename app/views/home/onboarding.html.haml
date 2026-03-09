@@ -1,16 +1,32 @@
 - content_for :title, "Onboarding"
 
-.container.w-75
-  .row.mt-2.mb-2
-    .col-md-6.mx-auto
-      %h1.jumbotron.text-center Welcome
-
-      .row.center.text-center#new-family
-        .col.md-3.mx-auto.w-75
-          Create a Family
-          %br
-          = link_to "New Family", new_family_path, class: "btn btn-primary"
-          %br
-          %h4 Have a code?
-          = link_to "Join Family", join_families_path, class: "action-btn btn btn-success"    
+.container
+  .header-card.mt-5
+    %h1
+      Welcome to Life Record!
+  .body-card
+    .h3.text-center
+      Create your Family!
+    .d-flex.flex-column
+      .mb-5.align-items-center.text-center
+        Creating a family will make you the owner, allowing you to add family members.
+      
+      .w-50
+        %h6 Through Life Record, you are able to:
+      .ol.list-group.list-group-numbered.mb-5
+        .li.list-group-item
+          Manage Important Information & Documents
+        .li.list-group-item
+          Create Events through a Family Calendar
+        .li.list-group-item 
+          Track Financial Accounts & Due Dates
+        .li.list-group-item
+          Manage Property Information & Documents
+        .li.list-group-item
+          Manage Vehicle Information & Maintenance Information
+    .text-center.mb-5
+      = link_to "New Family", new_family_path, class: "btn btn-primary"
+    %h4
+      Have a code?
+    = link_to "Join Family", join_families_path, class: "action-btn btn btn-success"    
 
