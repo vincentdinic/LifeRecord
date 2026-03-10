@@ -7,7 +7,7 @@
           = "#{@family.name.titleize} #{'Family' unless @family.name.include?("Family") || @family.name.include?("family")}"
       .col-4
         - if @family.admin?(current_user)
-          .record-actions
+          .record-actions.justify-content-end
             = link_to "Edit", edit_family_path(@family), class: "btn btn-primary action-btn"
 
   .body-card

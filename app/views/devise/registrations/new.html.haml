@@ -1,34 +1,42 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    %p= f.label :first_name, "First Name"
-    %p= f.text_field :first_name, autofocus: true 
-  .field
-    %p= f.label :last_name, "Last Name"
-    %p= f.text_field :last_name 
-  .field
-    %p= f.label :email
-    %p= f.email_field :email, autocomplete: "email"
-  .field 
-    %p= f.label :birthday, "Birthday"
-    %p= f.date_select :birthday, 
-                      start_year: Date.today.year - 80,
-                      end_year: Date.today.year,
-                      default: { month: 1, day: 1, year: 2000 },
-                      order: [ :month, :day, :year ],
-                      include_blank: false
-    
-  .field
-    %p= f.label :password
-    - if @minimum_password_length
-      %p
-        %em
-          (#{@minimum_password_length} characters minimum)
-    %p= f.password_field :password, autocomplete: "new-password"
-  .field
-    %p= f.label :password_confirmation
-    %p= f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+- content_for :title, "Account Registration"
+.container.w-50
+  .header-card
+    %h1
+      Sign Up
+  .body-card
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .form-group.mb-3
+        = f.label :first_name, "First Name", class: "form-label"
+        = f.text_field :first_name, autofocus: true, class: "form-control"
+      .form-group.mb-3
+        = f.label :last_name, "Last Name", class: "form-label"
+        = f.text_field :last_name, class: "form-control"
+      .form-group.mb-3
+        = f.label :email, class: "form-label"
+        = f.email_field :email, autocomplete: "email", class: "form-control"
+      .form-group.mb-3
+        = f.label :birthday, "Birthday", class: "form-label"
+        .d-flex.align-content-between
+          = f.date_select :birthday,
+            { start_year: Date.today.year - 80,
+              end_year: Date.today.year,
+              default: { month: 1, day: 1, year: 2000 },
+              order: [:month, :day, :year],
+              include_blank: false },
+            { class: "form-select me-2" }
+      .form-group.mb-3
+        = f.label :password, class: "form-label"
+        = f.password_field :password, autocomplete: "new-password", class: "form-control"
+
+        - if @minimum_password_length
+          .form-text
+            (#{@minimum_password_length} characters minimum)
+      .mb-3
+        = f.label :password_confirmation, "Re-Enter Password", class: "form-label"
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+      .d-flex.justify-content-between
+        .record-actions
+          = f.submit "Sign up", class: "action-btn btn btn-success"
+        .record-actions
+          = link_to "Log in", new_session_path(resource_name)
