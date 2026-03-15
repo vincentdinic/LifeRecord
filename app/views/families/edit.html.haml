@@ -3,11 +3,11 @@
 .container.w-50
   .header-card
     .row
-      .col-4
-      .col-4 
+      .col-2
+      .col-8 
         %h1
           Editing Family: #{@family.name}
-      .col-4
+      .col-2
         .record-actions.mb-1.justify-content-end
           = button_to "Destroy", @family,
             method: :delete,
