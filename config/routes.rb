@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     end
 
     resources :family_users, only: [ :index, :create, :update, :destroy ]
+    resources :accounts
   end
 
   # Defines the root path route ("/")

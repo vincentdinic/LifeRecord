@@ -1,6 +1,7 @@
 class Family < ApplicationRecord
   has_many :family_users, dependent: :destroy
   has_many :users, through: :family_users
+  has_many :accounts
   before_create :generate_join_code
 
   # returns the role of that specific user
