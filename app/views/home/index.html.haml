@@ -1,14 +1,23 @@
-%html{ lang: "en" }
-    %head
-        %meta{ charset: "UTF-8" }
-        %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
-        %title Life Record
-    %body
-        %div.container.center
+-content_for :title, "Life Record"
 
-            %h1.jumbotron
-                .text-center.fw-bold.mt-3
-                    Life Record
-            - if current_user
-                %h5.text-center 
-                    Welcome, #{ current_user.first_name }
+.container
+  .header-card.mt-5
+    %h1
+      .text-center.fw-bold.mt-3
+        Life Record
+    .mt-3
+    - if current_user
+      %h5.text-center 
+        Welcome, #{ current_user.first_name }
+    - else
+      %h5.text-center
+        Welcome to Life Record, a web-based organization tool that meets your family's needs.
+  .body-card.text-center
+    .h3
+      Create an Account
+    .d-flex.justify-content-center
+      .w-50
+        To begin managing your various assets and important documents, create an account today. Once logged in, you will be able to create a family to manage or join an existing one. 
+    .mt-1
+      = link_to "Sign Up", new_user_registration_path, class: "btn btn-primary"
+  
