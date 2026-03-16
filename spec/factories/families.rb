@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :family do
-    name { "MyString" }
+    name { "#{Faker::Name.last_name} Family" }
+    join_code { SecureRandom.alphanumeric(6).upcase }
   end
 end
