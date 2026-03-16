@@ -16,8 +16,7 @@ end
 
 def seed_users
   puts "Seeding Users"
-
-  10.times do
+  15.times do
     FactoryBot.create :user
   end
 end
@@ -26,9 +25,9 @@ def seed_family
   puts "Seeding Families"
   2.times do
     family = FactoryBot.create :family
-    owner = User.all.sample
+    owner = User.first
     FactoryBot.create :family_user, user: owner, family: family, role: 2
-    User.all.sample(3).each do |user|
+    User.all.sample(4).each do |user|
       unless FamilyUser.exists?(user: user, family: family)
         FactoryBot.create :family_user, user: user, family: family
       end
@@ -39,7 +38,7 @@ end
 def seed_accounts
   puts "Seeding Accounts"
   Family.all.each do |family|
-    3.times do
+    5.times do
       FactoryBot.create :account, family: family
     end
   end

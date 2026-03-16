@@ -1,11 +1,11 @@
 .container
   .header-card
     .row.align-items-center
-      .col-4
-      .col-4.text-center
-        .title
+      .col-2
+      .col-8.text-center
+        .h1
           = "#{@family.name.titleize} #{'Family' unless @family.name.include?("Family") || @family.name.include?("family")}"
-      .col-4
+      .col-2
         - if @family.admin?(current_user)
           .record-actions.justify-content-end
             = link_to "Edit", edit_family_path(@family), class: "btn btn-primary action-btn"
@@ -18,6 +18,6 @@
       %ul.list-group
         - @family.users.each do |family_member|
           %li.list-group-item
-            = link_to family_member.name, family_member
+            = render "users/user", user: family_member
     - else
       .text-muted No family members added yet.

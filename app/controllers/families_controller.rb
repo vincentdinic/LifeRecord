@@ -3,6 +3,9 @@ class FamiliesController < ApplicationController
 
   # GET /families/1
   def show
+    @family = current_user.families.find_by(id: params[:id])
+    session[:family_id] = @family.id
+    @current_family = @family
   end
 
   # GET /families/new
