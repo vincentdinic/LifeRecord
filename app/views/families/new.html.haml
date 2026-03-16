@@ -5,6 +5,7 @@
       Create Family
   .body-card
     = render "form", family: @family
+    = link_to "Join a Family", join_families_path, class: "action-btn btn btn-primary"
     .mt-1
       = link_to "Back", :back  
 

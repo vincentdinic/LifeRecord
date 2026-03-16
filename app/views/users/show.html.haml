@@ -1,0 +1,13 @@
+.container
+  .header-card
+    %h1
+      = @user.name
+  .body-card
+    %h3 Education History
+    = Faker::Lorem.paragraphs(number: 10).join(" ")
+  .body-card
+    %h3 Employment History
+    = Faker::Lorem.paragraphs(number: 10).join(" ")
+  .body-card
+    %h3 Documents & Notes
+    = Faker::Lorem.paragraphs(number: 10).join(" ")
