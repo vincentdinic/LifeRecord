@@ -1,0 +1,10 @@
+- due_date = account.due_date
+- ui_date = Date.current.change(day: due_date.day)
+- ui_date = ui_date.next_month if ui_date < Date.current
+
+.container
+  %h3.mt-2.mb-2
+    = account.name
+  .text
+    %strong Due date:
+    = ui_date.strftime("%B #{ui_date.day.ordinalize}")

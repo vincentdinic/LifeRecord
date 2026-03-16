@@ -1,0 +1,22 @@
+- content_for :title, "Finances"
+.container
+  .header-card
+    .row
+      .col-2
+      .col-8
+        %h1 Finances
+      .col-2
+        .record-actions.justify-content-end.align-items-center
+          = link_to "New Account", new_family_account_path, class: 'btn btn-primary'
+
+  .body-card
+    .h3.mb-3
+      Accounts
+    - if @accounts.any?
+      %ul.list-group
+        - @accounts.each do |account|
+          .li.list-group-item
+            = render account
+    - else
+      .text-muted No financial accounts added yet.
+
