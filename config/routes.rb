@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
     resources :family_users, only: [ :index, :create, :update, :destroy ]
     resources :accounts
+    resources :events
   end
 
   # Defines the root path route ("/")
