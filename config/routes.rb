@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
     resources :family_users, only: [ :index, :create, :update, :destroy ]
     resources :accounts
-    resources :calendar, only: [ :show ]
+    resource :calendar, only: [ :show ]
     resources :events
   end
 
