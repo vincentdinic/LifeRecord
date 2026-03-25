@@ -16,6 +16,11 @@
       .form-group.mb-3
         = form.label :end_time, "Event End", class: "form-label"
         = form.datetime_local_field :end_time, class: "form-control"
-      
+      .form-group.mb-3
+        = form.label :user_ids, "Users", class: "form-label"
+        - @current_family.users.each do |user|
+          .form-check
+            = check_box_tag "event[user_ids][]", user.id, false, class: "form-check-input", id: "user_#{user.id}"
+            = label_tag "user_#{user.id}", "#{user.name}" , class: "form-check-label"
       .record-actions
         = form.submit "Save", class: "action-btn btn btn-success"
