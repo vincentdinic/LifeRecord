@@ -15,6 +15,7 @@ document.addEventListener('turbo:load', () => {
     plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin, bootstrap5Plugin],
     initialView: 'dayGridMonth',
     themeSystem: 'bootstrap5',
+    timeZone: 'local',
     headerToolbar:
     {
       start: 'prev,next today',

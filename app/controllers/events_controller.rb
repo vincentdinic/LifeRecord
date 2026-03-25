@@ -23,8 +23,8 @@ class EventsController < ApplicationController
             id: event.id,
             title: event.title,
             description: event.description,
-            start: event.start_time,
-            end: event.end_time
+            start: event.start_time.iso8601,
+            end: event.end_time.iso8601
           }
         }
       end
