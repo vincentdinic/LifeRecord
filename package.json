@@ -10,6 +10,7 @@
     "@hotwired/turbo-rails": "^8.0.23",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
     "sass": "^1.97.3"
   },
   "scripts": {
