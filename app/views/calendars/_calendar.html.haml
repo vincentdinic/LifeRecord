@@ -1,6 +1,2 @@
-.container
-  .header-card
-    %h1
-      #{@current_family.name}'s Calendar
-  .body-card
-    #calendar
+.body-card
+  #calendar{ data: { family_id: @current_family.id } }

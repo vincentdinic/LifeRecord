@@ -1,1 +1,10 @@
-= render "calendar"
+.container
+  .header-card
+    %h1
+      #{@current_family.name}'s Calendar
+  .body-card
+    .row
+      .col-4
+        = render "events/form", event: @event
+      .col-8
+        = render "calendar"

@@ -9,10 +9,13 @@ document.addEventListener('turbo:load', () => {
 
   if (!el) return
 
+  const familyId = el.dataset.familyId
+
   const calendar = new Calendar(el, {
     plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin, bootstrap5Plugin],
     initialView: 'dayGridMonth',
-    themeSystem: 'bootstrap5'
+    themeSystem: 'bootstrap5',
+    events: `/families/${familyId}/events.json`
   })
 
   calendar.render()
