@@ -33,7 +33,7 @@ class AccountsController < ApplicationController
   # DELETE /accounts/1
   def destroy
     @account.destroy!
-    redirect_to accounts_path, notice: "Account was successfully destroyed.", status: :see_other
+    redirect_to family_accounts_path(@current_family), notice: "Account was successfully destroyed.", status: :see_other
   end
 
   private

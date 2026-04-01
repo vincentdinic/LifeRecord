@@ -1,0 +1,37 @@
+.container
+  .header-card
+    .row.align-items-center
+      .col-2
+      .col-8.text-center
+        .h1
+          = @property.name
+      .col-2
+        - if @current_family.admin?(current_user)
+          .record-actions.justify-content-end
+            = link_to "Edit",
+              edit_family_property_path(@current_family, @property),
+              class: "btn btn-primary action-btn"
+
+  .body-card
+    %h3.mb-3 Property Details
+
+    .row.mb-3
+      .col-12
+        - if @property.description.present?
+          %p
+            = @property.description
+
+    .row.mb-3
+      .col-12
+        %strong Address:
+        %br
+        = @property.full_address
+  .body-card
+    %h3 Property History
+    = Faker::Lorem.paragraphs(number: 10).join(" ")
+  .body-card
+    %h3 Documents & Notes
+    = Faker::Lorem.paragraphs(number: 30).join(" ")
+
+    .record-actions.mb-1
+      = link_to "Back", :back

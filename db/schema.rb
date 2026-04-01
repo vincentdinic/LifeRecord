@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_23_172632) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_01_022513) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -53,6 +53,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_23_172632) do
     t.index ["user_id"], name: "index_family_users_on_user_id"
   end
 
+  create_table "properties", force: :cascade do |t|
+    t.string "city", null: false
+    t.string "country", default: "United States", null: false
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.bigint "family_id", null: false
+    t.string "name", null: false
+    t.string "state", null: false
+    t.string "street", null: false
+    t.string "unit"
+    t.datetime "updated_at", null: false
+    t.string "zip_code", null: false
+    t.index ["family_id"], name: "index_properties_on_family_id"
+  end
+
   create_table "user_events", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.bigint "event_id", null: false
@@ -82,6 +97,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_23_172632) do
   add_foreign_key "events", "families"
   add_foreign_key "family_users", "families"
   add_foreign_key "family_users", "users"
+  add_foreign_key "properties", "families"
   add_foreign_key "user_events", "events"
   add_foreign_key "user_events", "users"
 end

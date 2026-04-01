@@ -3,6 +3,7 @@ def seed_development
   seed_users
   seed_family
   seed_accounts
+  seed_properties
 end
 
 def seed_config
@@ -40,6 +41,15 @@ def seed_accounts
   Family.all.each do |family|
     5.times do
       FactoryBot.create :account, family: family
+    end
+  end
+end
+
+def seed_properties
+  puts "Seeding Properties"
+  Family.all.each do |family|
+    3.times do
+      FactoryBot.create :property, family: family
     end
   end
 end

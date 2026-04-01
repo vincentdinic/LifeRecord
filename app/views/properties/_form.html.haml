@@ -1,0 +1,24 @@
+= form_with(model: [@current_family, @property]) do |form|
+  .form-group.mb-3
+    = form.label :name, "Property Name *", class: "form-label"
+    = form.text_field :name, required: true, class: "form-control"
+
+  .form-group.mb-3
+    = form.label :description, "Description", class: "form-label"
+    = form.text_area :description, class: "form-control"
+
+    .form-group.mb-3
+    = form.label :street, "Address *", class: "form-label"
+    = form.text_field :street, placeholder: "Street Address *", required: true, class: "form-control mb-2"
+
+    .d-flex.mb-2
+      = form.text_field :unit, placeholder: "Unit", class: "form-control me-2 w-25"
+      = form.text_field :city, required: true, placeholder: "City *", class: "form-control me-2"
+
+    .d-flex
+      = form.text_field :state, required: true, placeholder: "State *", class: "form-control me-2 w-25"
+      = form.text_field :zip_code, required: true, placeholder: "Zip Code *", class: "form-control me-2 w-25"
+      = form.text_field :country, placeholder: "Country *", required: true, class: "form-control"
+
+  .record-actions
+    = form.submit "Save", class: "action-btn btn btn-success"

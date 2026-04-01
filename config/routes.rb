@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         get :index
       end
     end
+    resources :properties
   end
 
   # Defines the root path route ("/")
