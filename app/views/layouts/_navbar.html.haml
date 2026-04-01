@@ -25,10 +25,11 @@
 
                                 %ul.dropdown-menu.dropdown-menu-dark.bg-dark
                                     - current_user.families.each do |family|
+                                        - family_class = family == @current_family ? "dropdown-item text-primary" : "dropdown-item"
                                         %li
                                             = link_to family.name,
                                                     family_path(family),
-                                                    class: "dropdown-item"
+                                                    class: family_class
                                         - unless family == current_user.families.last 
                                             %li
                                                 %hr.dropdown-divider.border-light.opacity-25
@@ -36,7 +37,7 @@
                             - else
                                 = link_to "Family", family_path(@current_family), class: "nav-link"
                         %li.nav-item.me-5
-                            = link_to "Calendar", "#", class: "nav-link"
+                            = link_to "Calendar", family_calendar_path(@current_family), class: "nav-link"
                         %li.nav-item.me-5
                             = link_to "Finances", family_accounts_path(@current_family), class: "nav-link"
                         %li.nav-item.me-5
