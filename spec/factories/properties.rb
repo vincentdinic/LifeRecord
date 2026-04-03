@@ -9,5 +9,14 @@ FactoryBot.define do
     country { "United States" }
 
     unit { Faker::Address.building_number if [ true, true, false ].sample }
+
+    bedrooms  { rand(1..6) }
+    bathrooms { [ 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0 ].sample }
+    purchase_date { Faker::Date.backward(days: 3650) if [ true, false ].sample }
+    square_feet   { rand(500..12000) }
+    year_built    { rand(1950..2024) }
+
+    occupancy_status { Property.occupancy_statuses.keys.sample }
+    ownership_status { Property.ownership_statuses.keys.sample }
   end
 end

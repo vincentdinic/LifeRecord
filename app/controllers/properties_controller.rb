@@ -53,6 +53,13 @@ class PropertiesController < ApplicationController
                               :city,
                               :state,
                               :zip_code,
-                              :country ])
+                              :country,
+                              :bedrooms,
+                              :bathrooms,
+                              :year_built,
+                              :purchase_date,
+                              :square_feet,
+                              :occupancy_status,
+                              :ownership_status ])
   end
 end

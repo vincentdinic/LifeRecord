@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_01_022513) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_02_134508) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -54,16 +54,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_01_022513) do
   end
 
   create_table "properties", force: :cascade do |t|
+    t.decimal "bathrooms", precision: 3, scale: 1, null: false
+    t.integer "bedrooms", null: false
     t.string "city", null: false
     t.string "country", default: "United States", null: false
     t.datetime "created_at", null: false
     t.text "description"
     t.bigint "family_id", null: false
     t.string "name", null: false
+    t.integer "occupancy_status", default: 0, null: false
+    t.integer "ownership_status", default: 0, null: false
+    t.date "purchase_date"
+    t.integer "square_feet"
     t.string "state", null: false
     t.string "street", null: false
     t.string "unit"
     t.datetime "updated_at", null: false
+    t.integer "year_built"
     t.string "zip_code", null: false
     t.index ["family_id"], name: "index_properties_on_family_id"
   end

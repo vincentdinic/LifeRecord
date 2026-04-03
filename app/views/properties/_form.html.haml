@@ -7,18 +7,67 @@
     = form.label :description, "Description", class: "form-label"
     = form.text_area :description, class: "form-control"
 
-    .form-group.mb-3
+  .form-group.mb-2
     = form.label :street, "Address *", class: "form-label"
     = form.text_field :street, placeholder: "Street Address *", required: true, class: "form-control mb-2"
 
-    .d-flex.mb-2
-      = form.text_field :unit, placeholder: "Unit", class: "form-control me-2 w-25"
-      = form.text_field :city, required: true, placeholder: "City *", class: "form-control me-2"
+  .d-flex.mb-2
+    = form.text_field :unit, placeholder: "Unit", class: "form-control me-2 w-25"
+    = form.text_field :city, required: true, placeholder: "City *", class: "form-control"
 
-    .d-flex
-      = form.text_field :state, required: true, placeholder: "State *", class: "form-control me-2 w-25"
-      = form.text_field :zip_code, required: true, placeholder: "Zip Code *", class: "form-control me-2 w-25"
-      = form.text_field :country, placeholder: "Country *", required: true, class: "form-control"
+  .d-flex.mb-3
+    = form.text_field :state, required: true, placeholder: "State *", class: "form-control me-2 w-25"
+    = form.text_field :zip_code, required: true, placeholder: "Zip Code *", class: "form-control me-2 w-25"
+    = form.text_field :country, placeholder: "Country *", required: true, class: "form-control"
 
+  .d-flex.mb-3
+    .form-group.me-2.w-15
+      = form.label :bedrooms, "# Bedrooms *", class: "form-label"
+      = form.number_field :bedrooms, class: "form-control",
+                                     required: true,
+                                     min: 1,
+                                     placeholder: 2
+    .form-group.w-15
+      = form.label :bathrooms, "# Bathrooms *", class: "form-label"
+      = form.number_field :bathrooms, class: "form-control",
+                                      min: 1,
+                                      max: 99.5,
+                                      step: 0.5,
+                                      required: true,
+                                      placeholder: 1
+  
+  .d-flex.mb-3
+    .form-grouop.w-25.me-2
+      = form.label :year_built, "Year Built", class: "form-label"
+      = form.select :year_built,
+                    ((Date.today.year - 150)..Date.today.year).to_a.reverse,
+                    { include_blank: true},
+                    { class: 'form-control'}
+    .form-group.w-25.me-2
+      = form.label :purchase_date, "Purchase Date", class: "form-label"
+      = form.date_field :purchase_date, class: "form-control", max: Time.zone.today 
+      
+    .form-group.w-25
+      = form.label :square_feet, "Square Feet", class: "form-label"
+      = form.number_field  :square_feet, class: "form-control", min: 50, max: 200000, placeholder: 1000
+      .form-text
+        sq. ft
+
+  .d-flex.mb-3
+    .form-group.w-50.me-2
+      = form.label :occupancy_status, "Occupancy Status *", class: "form-label"
+      = form.select :occupancy_status,
+        Property.occupancy_statuses.keys.map { |k| [k.humanize, k] },
+        {},
+        class: "form-control",
+        required: true
+
+    .form-group.w-50
+      = form.label :ownership_status, "Ownership Status *", class: "form-label"
+      = form.select :ownership_status,
+        Property.ownership_statuses.keys.map { |k| [k.humanize, k] },
+        {},
+        class: "form-control",
+        required: true
   .record-actions
     = form.submit "Save", class: "action-btn btn btn-success"
