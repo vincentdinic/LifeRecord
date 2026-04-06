@@ -40,5 +40,7 @@
             class: "action-btn btn btn-success"
 
     .col-12.col-md-4.mt-3.mt-md-0.text-md-end
-      // TODO - allow users to add property images to DB
-      = image_tag "default_property.jpg", class: "rounded shadow-sm"
+      - if property.image.attached?
+        = image_tag property.image.variant(resize_to_limit: [400, 250]), class: "rounded shadow-sm img-fluid"
+      - else
+        = image_tag "default_property.jpg", class: "rounded shadow-sm img-fluid"

@@ -1,5 +1,6 @@
 class Property < ApplicationRecord
   belongs_to :family
+  has_one_attached :image
 
   enum :occupancy_status, {
     primary: 0,

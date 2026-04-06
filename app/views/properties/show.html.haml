@@ -29,11 +29,7 @@
             .col-10.col-md-10
               %p.text-muted
                 = @property.description
-          .col-2.col-md-2.text-end
-            %strong Year Built
-            %br
-            = @property.year_built || "-"
-        
+
         .row.mb-4
           .col-4.col-md-4
             %strong Address:
@@ -50,11 +46,15 @@
             %strong Bathrooms
             %br
             = @property.bathrooms
-          .col-4.col-md-3
+          .col-2.col-md-2
             %strong Sq. Ft
             %br
             = @property.square_feet || "-"
-
+          .col-2.col-md-2.text-end
+            %strong Year Built
+            %br
+            = @property.year_built || "-"
+        
         .row.mb-2
           .col-4.col-md-3
             %strong Occupancy Status

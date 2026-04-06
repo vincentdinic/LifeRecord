@@ -1,7 +1,9 @@
 .container
   .d-flex.align-items-center.gap-3
-    // TODO - allow users to add profile pictures to DB
-    = image_tag "default_avatar.png", class: "rounded", width: 70, height: 70
+    - if user.avatar.attached?
+      = image_tag user.avatar.variant(resize_to_limit: [150, 150]), class: "rounded shadow-sm img-fluid"
+    - else
+      = image_tag "default_avatar.png", class: "rounded img-fluid", width: 85, height: 85
     .text
       %h3.mt-2.mb-2
         = link_to "#{user.name}", user, style: "text-decoration: none;"

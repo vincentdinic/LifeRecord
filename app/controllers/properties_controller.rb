@@ -60,6 +60,7 @@ class PropertiesController < ApplicationController
                               :purchase_date,
                               :square_feet,
                               :occupancy_status,
-                              :ownership_status ])
+                              :ownership_status,
+                              :image ])
   end
 end
