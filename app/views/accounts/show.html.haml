@@ -1,10 +1,5 @@
-%p{style: "color: green"}= notice
-
 = render @account
 
-%div
-  = link_to "Edit this account", edit_account_path(@account)
-  |
-  = link_to "Back to accounts", accounts_path
-
-  = button_to "Destroy this account", @account, method: :delete
+= button_to "Destroy this account",
+  family_account_path(@current_family, @account),
+  method: :delete

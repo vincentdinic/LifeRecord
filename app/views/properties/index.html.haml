@@ -1,4 +1,6 @@
 - content_for :title, "Properties"
+- admin = @current_family.admin?(current_user)
+
 .container
   .header-card
     .row
@@ -6,8 +8,9 @@
       .col-8
         %h1 Properties
       .col-2
-        .record-actions.justify-content-end.align-items-center
-          = link_to "New Property", new_family_property_path, class: 'btn btn-primary'
+        - if admin
+          .record-actions.justify-content-end.align-items-center
+            = link_to "New Property", new_family_property_path, class: 'btn btn-primary'
 
   .body-card
     .h3.mb-3

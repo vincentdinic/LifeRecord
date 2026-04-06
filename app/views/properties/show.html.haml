@@ -1,3 +1,4 @@
+- admin = @current_family.admin?(current_user)
 .container
   .header-card
     .row.align-items-center
@@ -6,7 +7,7 @@
         .h1
           = @property.name
       .col-2
-        - if @current_family.admin?(current_user)
+        - if admin
           .record-actions.justify-content-end
             = link_to "Edit",
               edit_family_property_path(@current_family, @property),
