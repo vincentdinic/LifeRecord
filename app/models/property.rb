@@ -1,5 +1,7 @@
 class Property < ApplicationRecord
   belongs_to :family
+  has_many :maintenance_records, as: :maintainable, dependent: :destroy
+  has_many :documents, as: :documentable, dependent: :destroy
   has_one_attached :image
 
   enum :occupancy_status, {

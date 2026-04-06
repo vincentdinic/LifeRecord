@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_06_025643) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_06_054920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -51,6 +51,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_025643) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "document_type", null: false
+    t.bigint "documentable_id", null: false
+    t.string "documentable_type", null: false
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "uploaded_by_id", null: false
+    t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable"
+    t.index ["uploaded_by_id"], name: "index_documents_on_uploaded_by_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
@@ -79,6 +92,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_025643) do
     t.index ["family_id"], name: "index_family_users_on_family_id"
     t.index ["user_id", "family_id"], name: "index_family_users_on_user_id_and_family_id", unique: true
     t.index ["user_id"], name: "index_family_users_on_user_id"
+  end
+
+  create_table "maintenance_records", force: :cascade do |t|
+    t.string "contractor"
+    t.decimal "cost", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.bigint "created_by_id", null: false
+    t.text "description"
+    t.bigint "maintainable_id", null: false
+    t.string "maintainable_type", null: false
+    t.date "performed_on"
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_maintenance_records_on_created_by_id"
+    t.index ["maintainable_type", "maintainable_id"], name: "index_maintenance_records_on_maintainable"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -131,9 +159,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_025643) do
   add_foreign_key "accounts", "families"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "documents", "users", column: "uploaded_by_id"
   add_foreign_key "events", "families"
   add_foreign_key "family_users", "families"
   add_foreign_key "family_users", "users"
+  add_foreign_key "maintenance_records", "users", column: "created_by_id"
   add_foreign_key "properties", "families"
   add_foreign_key "user_events", "events"
   add_foreign_key "user_events", "users"

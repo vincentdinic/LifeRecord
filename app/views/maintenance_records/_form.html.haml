@@ -1,0 +1,28 @@
+- url = @maintenance_record.persisted? ? maintenance_record_path(@maintenance_record) : polymorphic_path([@current_family, @parent, @maintenance_record])
+
+= form_with(model: @maintenance_record, url: url) do |form|
+  .form-group.mb-3
+    = form.label :title, "Title *", class: "form-label"
+    = form.text_field :title, required: true, class: "form-control"
+
+  .form-group.mb-3
+    = form.label :description, "Description", class: "form-label"
+    = form.text_area :description, class: "form-control"
+
+  .d-flex.mb-3
+    .form-group.me-2.w-25
+      = form.label :performed_on, "Date Performed", class: "form-label"
+      = form.date_field :performed_on, class: "form-control", max: Time.zone.today
+
+    .form-group.w-25
+      = form.label :cost, "Cost", class: "form-label"
+      = form.number_field :cost, class: "form-control", min: 0, step: 0.01, placeholder: "0.00"
+      .form-text
+        USD
+
+  .form-group.mb-3
+    = form.label :contractor, "Contractor", class: "form-label"
+    = form.text_field :contractor, class: "form-control"
+
+  .record-actions
+    = form.submit "Save", class: "action-btn btn btn-success"
