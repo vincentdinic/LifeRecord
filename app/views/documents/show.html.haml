@@ -1,0 +1,56 @@
+- admin = @current_family.admin?(current_user)
+
+.container
+  .header-card
+    .row.align-items-center
+      .col-2
+        .record-actions
+          = link_to "Back", :back, class: "action-btn btn btn-secondary"
+      .col-8.text-center
+        %h1
+          = @document.title
+      .col-2
+        - if admin
+          .record-actions.justify-content-end
+            = link_to "Delete",
+              document_path(@document),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+              class: "btn btn-danger action-btn"
+
+  .body-card
+    %h3.mb-3 Document Details
+    - if @document.description.present?
+      .row.mb-3
+        .col-10
+          %p.text-muted
+            = @document.description
+    .row.mb-3
+      .col-4.col-md-3
+        %strong Type
+        %br
+        = @document.document_type.humanize
+      .col-4.col-md-3
+        %strong Uploaded By
+        %br
+        = @document.uploaded_by.full_name
+      .col-4.col-md-3
+        %strong Uploaded On
+        %br
+        = @document.created_at.strftime("%B %d, %Y")
+
+
+
+  .body-card
+    %h3.mb-3 File
+
+    - if @document.file.attached?
+      - if @document.file.image?
+        = image_tag url_for(@document.file.variant(resize_to_limit: [600, 600])), class: "img-fluid rounded shadow-lg"
+      - else
+        = link_to "Download #{@document.title}",
+            url_for(@document.file),
+            class: "btn btn-primary",
+            target: "_blank"
+    - else
+      %p.text-muted No file attached.
+// to-do - add versioning for documents (document groups)
