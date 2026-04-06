@@ -1,0 +1,34 @@
+.body-card
+  .section-header.d-flex.justify-content-between.align-items-center.mb-3
+    %h3.mb-0 Maintenance History
+    - if admin
+      = link_to "Add Record",
+        new_family_property_maintenance_record_path(family, parent),
+        class: "btn btn-primary btn-sm"
+
+  - if parent.maintenance_records.any?
+    - parent.maintenance_records.order(performed_on: :desc).each do |record|
+      .maintenance-record.border.rounded.p-3.mb-2
+        .d-flex.justify-content-between.align-items-start
+          %strong
+            = link_to record.title, maintenance_record_path(record), class: "text-decoration-none"
+          %span.text-muted.small
+            = record.performed_on&.strftime("%B %d, %Y")
+
+        - if record.contractor.present?
+          %p.mb-1.text-muted.small
+            = "Contractor: #{record.contractor}"
+        - if record.cost.present?
+          %p.mb-1.small
+            = number_to_currency(record.cost)
+        - if record.description.present?
+          %p.mb-2.small
+            = record.description
+
+        - if record.documents.any?
+          .d-flex.flex-wrap.gap-1
+            - record.documents.each do |document|
+              %span.badge.bg-secondary
+                = document.title
+  - else
+    %p.text-muted No maintenance records yet.

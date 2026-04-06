@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :user_events, dependent: :destroy
   has_many :events, through: :user_events
 
-  def name
+  def full_name
     "#{first_name} #{last_name}"
   end
 end

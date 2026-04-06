@@ -16,8 +16,11 @@
 
     - if @family.users.any?
       %ul.list-group
+        .border.rounded.p-3
+          = render "users/user", user: current_user
         - @family.users.reverse.each do |family_member|
-          %li.list-group-item
-            = render "users/user", user: family_member
+          - unless family_member == current_user
+            .border.rounded.p-3
+              = render "users/user", user: family_member
     - else
       .text-muted No family members added yet.

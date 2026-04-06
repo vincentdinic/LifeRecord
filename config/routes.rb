@@ -11,7 +11,13 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  resources :users, only: [ :show, :edit, :update ]
+  resources :users, only: [ :show, :edit, :update ] do
+    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+  end
+
+  resources :maintenance_records, only: [] do
+    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+  end
 
   resources :families do
     member do
@@ -31,7 +37,10 @@ Rails.application.routes.draw do
         get :index
       end
     end
-    resources :properties
+    resources :properties do
+      resources :maintenance_records, shallow: true
+      resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+    end
   end
 
   # Defines the root path route ("/")

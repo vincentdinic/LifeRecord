@@ -1,0 +1,62 @@
+- admin = @current_family.admin?(current_user)
+
+.container
+  .header-card
+    .row.align-items-center
+      .col-2
+        .record-actions
+          = link_to "Back",
+            :back,
+            class: "action-btn btn btn-secondary"
+      .col-8.text-center
+        %h1
+          = @maintenance_record.title
+      .col-2
+        - if admin
+          .record-actions.justify-content-end
+            = link_to "Edit",
+              edit_maintenance_record_path(@maintenance_record),
+              class: "btn btn-primary action-btn"
+
+  .body-card
+    %h3.mb-3 Record Details
+
+    .row.align-items-center
+      .col-12.col-md-10
+        - if @maintenance_record.description.present?
+          .row.mb-3
+            .col-10
+              %p.text-muted
+                = @maintenance_record.description
+
+        .row.mb-4
+          - if @maintenance_record.performed_on.present?
+            .col-4.col-md-3
+              %strong Date Performed
+              %br
+              = @maintenance_record.performed_on.strftime("%B %d, %Y")
+          - if @maintenance_record.contractor.present?
+            .col-4.col-md-3
+              %strong Contractor
+              %br
+              = @maintenance_record.contractor
+          - if @maintenance_record.cost.present?
+            .col-4.col-md-3
+              %strong Cost
+              %br
+              = number_to_currency(@maintenance_record.cost)
+
+  .body-card
+    .d-flex.justify-content-between.align-items-center.mb-3
+      %h3.mb-0 Documents
+      - if admin
+        = link_to "Add Document",
+          new_maintenance_record_document_path(@maintenance_record),
+          class: "btn btn-primary btn-sm"
+
+    - if @maintenance_record.documents.any?
+      - @maintenance_record.documents.each do |document|
+        = render "documents/document", document: document
+    - else
+      %p.text-muted
+        No documents have been added yet.

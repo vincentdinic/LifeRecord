@@ -5,6 +5,9 @@ def seed_development
   seed_accounts
   seed_events
   seed_properties
+  # seed_vehicles
+  seed_maintenance_records
+  seed_documents
 end
 
 def seed_config
@@ -68,6 +71,39 @@ def seed_properties
   Family.all.each do |family|
     3.times do
       FactoryBot.create :property, family: family
+    end
+  end
+end
+
+def seed_vehicles
+end
+
+def seed_maintenance_records
+  puts "Seeding Maintenance Records"
+  Family.all.each do |family|
+    family.properties.each do |property|
+      rand(2..4).times do
+        FactoryBot.create :maintenance_record, maintainable: property, created_by: family.users.sample
+      end
+    end
+  end
+end
+
+def seed_documents
+  puts "Seeding Documents"
+  uploader = User.find_by(email: "vincent@example.com")
+
+  Family.all.each do |family|
+    family.properties.each do |property|
+      rand(1..10).times do
+        FactoryBot.create :document, documentable: property, uploaded_by: uploader
+      end
+
+      property.maintenance_records.each do |record|
+        rand(1..3).times do
+          FactoryBot.create :document, documentable: record, uploaded_by: family.users.sample
+        end
+      end
     end
   end
 end

@@ -18,7 +18,7 @@
     - if @accounts.any?
       %ul.list-group
         - @accounts.each do |account|
-          .li.list-group-item
+          .border.rounded.p-3
             = render account
     - else
       .text-muted No financial accounts added yet.

@@ -1,7 +1,7 @@
 .container
   .header-card
     %h1
-      = @user.name
+      = @user.full_name
   .body-card
     %h3 Education History
     = Faker::Lorem.paragraphs(number: 10).join(" ")
