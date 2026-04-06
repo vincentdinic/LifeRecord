@@ -34,11 +34,6 @@
           family_property_path(@current_family, property),
           class: "action-btn btn btn-primary me-2"
 
-        - if @current_family.admin?(current_user)
-          = link_to "Edit",
-            edit_family_property_path(@current_family, property),
-            class: "action-btn btn btn-success"
-
     .col-12.col-md-4.mt-3.mt-md-0.text-md-end
       - if property.image.attached?
         = image_tag property.image.variant(resize_to_limit: [400, 250]), class: "rounded shadow-sm img-fluid"

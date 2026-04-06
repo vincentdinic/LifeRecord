@@ -1,5 +1,25 @@
-= render @account
+- admin = @current_family.admin?(current_user)
 
-= button_to "Destroy this account",
-  family_account_path(@current_family, @account),
-  method: :delete
+.container
+  .header-card
+    .row.align-items-center
+      .col-2
+        .record-actions
+          = link_to "Back",
+            family_accounts_path(@current_family),
+            class: "action-btn btn btn-secondary"
+
+      .col-8.text-center
+        %h1
+          = @account.name
+      .col-2
+        - if admin
+          .record-actions.justify-content-end
+            = link_to "Edit",
+              edit_family_account_path(@current_family, @account),
+              class: "btn btn-primary action-btn"
+  .body-card
+    %h3.mb-3 Account Details
+    .text
+      %strong Due date:
+      = @account.due_date

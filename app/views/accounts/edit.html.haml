@@ -1,8 +1,22 @@
-- content_for :title, "Editing account"
-
-%h1 Editing account
-
-= render "form"
-
-%br
+- content_for :title, "Editing Account"
+.container.w-50
+  .header-card
+    .row
+      .col-2
+      .col-8 
+        %h1
+          Editing Account:
+          %br
+          #{@account.name}
+      .col-2
+        .record-actions.mb-1.justify-content-end
+          = button_to "Destroy", family_account_path(@current_family, @account),
+            method: :delete,
+            class: "action-btn btn btn-danger",
+            data: { turbo_confirm: "Are you sure you want to delete this account?" }
+  
+  .body-card
+    = render "form"
+    .mt-1
+      = link_to "Back", :back
 

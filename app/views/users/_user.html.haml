@@ -1,7 +1,7 @@
 .container
   .d-flex.align-items-center.gap-3
     - if user.avatar.attached?
-      = image_tag user.avatar.variant(resize_to_limit: [150, 150]), class: "rounded shadow-sm img-fluid"
+      = image_tag user.avatar.variant(resize_to_limit: [100, 100]), class: "rounded shadow-sm img-fluid"
     - else
       = image_tag "default_avatar.png", class: "rounded img-fluid", width: 85, height: 85
     .text

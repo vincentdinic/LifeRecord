@@ -5,7 +5,9 @@
       .col-2
       .col-8 
         %h1
-          Editing Property: #{@property.name}
+          Editing Property:
+          %br
+          #{@property.name}
       .col-2
         .record-actions.mb-1.justify-content-end
           = button_to "Destroy", family_property_path(@current_family, @property),
