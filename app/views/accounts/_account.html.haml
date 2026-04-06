@@ -4,7 +4,11 @@
 
 .container
   %h3.mt-2.mb-2
-    = account.name
+    = account.name.titleize
   .text
     %strong Due date:
     = ui_date.strftime("%B #{ui_date.day.ordinalize}")
+  .record-actions.mt-2
+    = link_to "View",
+      family_account_path(@current_family, account),
+      class: "action-btn btn btn-primary me-2"

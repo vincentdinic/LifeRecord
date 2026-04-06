@@ -1,0 +1,41 @@
+.container
+  .row.align-items-center
+    .col-12.col-md-8
+      .row.mb-3
+        %h4.mt-2.mb-3
+          = property.name
+
+        - if property.description.present?
+          %p.text-muted.mb-2
+            = property.description
+
+      .row.mb-2
+        .col-6.col-md-6
+          %strong Address:
+          %br
+          = property.full_address
+
+      .row.mb-2
+        .col-3.col-md-3
+          %strong Bedrooms
+          %br
+          = property.bedrooms
+        .col-3.col-md-3
+          %strong Bathrooms
+          %br
+          = property.bathrooms
+        .col-3.col-md-3
+          %strong Sq. Ft
+          %br
+          = property.square_feet || "-"
+
+      .record-actions.mt-3
+        = link_to "View",
+          family_property_path(@current_family, property),
+          class: "action-btn btn btn-primary me-2"
+
+    .col-12.col-md-4.mt-3.mt-md-0.text-md-end
+      - if property.image.attached?
+        = image_tag property.image.variant(resize_to_limit: [400, 250]), class: "rounded shadow-sm img-fluid"
+      - else
+        = image_tag "default_property.jpg", class: "rounded shadow-sm img-fluid"

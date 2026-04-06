@@ -1,10 +1,25 @@
-%p{style: "color: green"}= notice
+- admin = @current_family.admin?(current_user)
 
-= render @account
+.container
+  .header-card
+    .row.align-items-center
+      .col-2
+        .record-actions
+          = link_to "Back",
+            family_accounts_path(@current_family),
+            class: "action-btn btn btn-secondary"
 
-%div
-  = link_to "Edit this account", edit_account_path(@account)
-  |
-  = link_to "Back to accounts", accounts_path
-
-  = button_to "Destroy this account", @account, method: :delete
+      .col-8.text-center
+        %h1
+          = @account.name
+      .col-2
+        - if admin
+          .record-actions.justify-content-end
+            = link_to "Edit",
+              edit_family_account_path(@current_family, @account),
+              class: "btn btn-primary action-btn"
+  .body-card
+    %h3.mb-3 Account Details
+    .text
+      %strong Due date:
+      = @account.due_date

@@ -16,7 +16,7 @@
 
     - if @family.users.any?
       %ul.list-group
-        - @family.users.each do |family_member|
+        - @family.users.reverse.each do |family_member|
           %li.list-group-item
             = render "users/user", user: family_member
     - else

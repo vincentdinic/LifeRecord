@@ -4,6 +4,7 @@ class Family < ApplicationRecord
   has_many :users, through: :family_users
   has_many :accounts
   has_many :events
+  has_many :properties
 
   # returns the role of that specific user
   def role_for(user)

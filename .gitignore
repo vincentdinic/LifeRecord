@@ -6,6 +6,8 @@
 
 # temp files used by rails and os
 /tmp/
+/storage/*
+!/storage/.keep
 
 # yarn installations
 /node_modules
