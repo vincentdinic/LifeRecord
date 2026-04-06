@@ -1,22 +1,44 @@
 .container
-  %h3.mt-2.mb-2
-    = property.name
-  .row
-    .text.mb-2
-      = property.description if property.description.present?
-  .row
-    .col-3
-      .text
-        %strong Address:
-        = property.full_address
-    .col-5
-    .col-4
-  .row
-    .record-actions.mt-2
-      = link_to "View",
-        family_property_path(@current_family, property),
-        class: "action-btn btn btn-primary me-2"
-      - if @current_family.admin?(current_user)
-        = link_to "Edit",
-          edit_family_property_path(@current_family, property),
-          class: "action-btn btn btn-success"
+  .row.align-items-center
+    .col-12.col-md-8
+      .row.mb-3
+        %h4.mt-2.mb-3
+          = property.name
+
+        - if property.description.present?
+          %p.text-muted.mb-2
+            = property.description
+
+      .row.mb-2
+        .col-6.col-md-6
+          %strong Address:
+          %br
+          = property.full_address
+
+      .row.mb-2
+        .col-3.col-md-3
+          %strong Bedrooms
+          %br
+          = property.bedrooms
+        .col-3.col-md-3
+          %strong Bathrooms
+          %br
+          = property.bathrooms
+        .col-3.col-md-3
+          %strong Sq. Ft
+          %br
+          = property.square_feet || "-"
+
+      .record-actions.mt-3
+        = link_to "View",
+          family_property_path(@current_family, property),
+          class: "action-btn btn btn-primary me-2"
+
+        - if @current_family.admin?(current_user)
+          = link_to "Edit",
+            edit_family_property_path(@current_family, property),
+            class: "action-btn btn btn-success"
+
+    .col-12.col-md-4.mt-3.mt-md-0.text-md-end
+      // TODO - allow users to add property images to DB
+      = image_tag "default_property.jpg", class: "rounded shadow-sm"

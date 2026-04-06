@@ -1,10 +1,16 @@
 - admin = @current_family.admin?(current_user)
+
 .container
   .header-card
     .row.align-items-center
       .col-2
+        .record-actions
+          = link_to "Back",
+            family_properties_path(@current_family),
+            class: "action-btn btn btn-secondary"
+
       .col-8.text-center
-        .h1
+        %h1
           = @property.name
       .col-2
         - if admin
@@ -16,23 +22,57 @@
   .body-card
     %h3.mb-3 Property Details
 
-    .row.mb-3
-      .col-12
-        - if @property.description.present?
-          %p
-            = @property.description
+    .row.align-items-center
+      .col-12.col-md-10
+        .row.mb-3
+          - if @property.description.present?
+            .col-10.col-md-10
+              %p.text-muted
+                = @property.description
+          .col-2.col-md-2.text-end
+            %strong Year Built
+            %br
+            = @property.year_built || "-"
+        
+        .row.mb-4
+          .col-4.col-md-4
+            %strong Address:
+            %br
+            = @property.full_address
 
-    .row.mb-3
-      .col-12
-        %strong Address:
-        %br
-        = @property.full_address
+
+        .row.mb-2
+          .col-4.col-md-3
+            %strong Bedrooms
+            %br
+            = @property.bedrooms
+          .col-4.col-md-3
+            %strong Bathrooms
+            %br
+            = @property.bathrooms
+          .col-4.col-md-3
+            %strong Sq. Ft
+            %br
+            = @property.square_feet || "-"
+
+        .row.mb-2
+          .col-4.col-md-3
+            %strong Occupancy Status
+            %br
+            = @property.occupancy_status.titleize
+          .col-4.col-md-3
+            %strong Ownership Status
+            %br
+            = @property.ownership_status.titleize
+          .col-2.col-md-2
+            %strong Purchase Date
+            %br
+            = @property.purchase_date || "-"
+
   .body-card
     %h3 Property History
     = Faker::Lorem.paragraphs(number: 10).join(" ")
+
   .body-card
     %h3 Documents & Notes
     = Faker::Lorem.paragraphs(number: 30).join(" ")
-
-    .record-actions.mb-1
-      = link_to "Back", :back
