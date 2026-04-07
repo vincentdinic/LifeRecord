@@ -7,6 +7,7 @@ def seed_development
   seed_properties
   # seed_vehicles
   seed_maintenance_records
+  seed_education_records
   seed_documents
 end
 
