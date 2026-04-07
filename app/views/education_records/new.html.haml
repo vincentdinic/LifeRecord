@@ -1,0 +1,13 @@
+.container.w-50
+  .header-card
+    .row.align-items-center
+      .col-2
+        .record-actions
+          = link_to "Back",
+            user_path(@user),
+            class: "action-btn btn btn-secondary"
+      .col-8.text-center
+        %h1 Add Education Record
+
+  .body-card
+    = render "form"

@@ -1,0 +1,38 @@
+.section-header.d-flex.justify-content-between.align-items-center.mb-3
+  %h3.mb-0 Education History
+  - if is_own_profile
+    = link_to "Add Record",
+      new_user_education_record_path(user),
+      class: "btn btn-primary btn-sm"
+
+- if user.education_records.any?
+  - user.education_records.order(start_date: :desc).each do |record|
+    .education-record.border.rounded.p-3.mb-2.position-relative
+      .d-flex.justify-content-between.align-items-start
+        = link_to record.school_name,
+          education_record_path(record),
+          class: "fw-bold stretched-link text-decoration-none text-dark"
+        - if record.current?
+          %span.badge.bg-success Current
+        - else
+          %span.text-muted.small
+            = record.end_date&.strftime("%Y")
+
+      .mb-1.small
+        = record.degree_type.humanize
+      - if record.field_of_study.present?
+        .mb-1.small.text-muted= record.field_of_study
+      .d-flex.gap-2.mt-1
+        %span.text-muted.small= record.start_date&.strftime("%Y")
+        - if record.city.present?
+          %span.text-muted.small
+            -
+          %span.text-muted.small
+            = [record.city, record.state].compact.join(", ")
+        - if record.gpa.present?
+          %span.text-muted.small
+            -
+          %span.text-muted.small
+            GPA: #{record.gpa}
+- else
+  %p.text-muted No education records yet.
