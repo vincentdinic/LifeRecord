@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_06_054920) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_07_012456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -62,6 +62,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_054920) do
     t.bigint "uploaded_by_id", null: false
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable"
     t.index ["uploaded_by_id"], name: "index_documents_on_uploaded_by_id"
+  end
+
+  create_table "education_records", force: :cascade do |t|
+    t.string "city"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.boolean "current", default: false, null: false
+    t.string "degree_type", null: false
+    t.date "end_date"
+    t.string "field_of_study"
+    t.decimal "gpa", precision: 3, scale: 2
+    t.string "school_name", null: false
+    t.date "start_date", null: false
+    t.string "state"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_education_records_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -160,6 +177,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_054920) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "documents", "users", column: "uploaded_by_id"
+  add_foreign_key "education_records", "users"
   add_foreign_key "events", "families"
   add_foreign_key "family_users", "families"
   add_foreign_key "family_users", "users"

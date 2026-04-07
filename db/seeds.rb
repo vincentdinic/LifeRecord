@@ -90,10 +90,20 @@ def seed_maintenance_records
   end
 end
 
+def seed_education_records
+  puts "Seeding Education Records"
+  User.all.each do |user|
+    rand(1..3).times do
+      FactoryBot.create :education_record, user: user
+    end
+  end
+end
+
 def seed_documents
   puts "Seeding Documents"
   uploader = User.find_by(email: "vincent@example.com")
 
+  puts "  Property Documents"
   Family.all.each do |family|
     family.properties.each do |property|
       rand(1..10).times do
@@ -104,6 +114,19 @@ def seed_documents
         rand(1..3).times do
           FactoryBot.create :document, documentable: record, uploaded_by: family.users.sample
         end
+      end
+    end
+  end
+
+  puts "  User Documents"
+  User.all.each do |user|
+    rand(1..3).times do
+      FactoryBot.create :document, documentable: user, uploaded_by: user
+    end
+
+    user.education_records.each do |record|
+      rand(1..2).times do
+        FactoryBot.create :document, documentable: record, uploaded_by: user
       end
     end
   end
