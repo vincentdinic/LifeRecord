@@ -63,11 +63,13 @@ body {
   margin-bottom: 1px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
-
+.user {
+  position: relative;
+}
 .user:hover { 
   transform: scale(1.00625);
   margin-bottom: 1px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .account:hover {

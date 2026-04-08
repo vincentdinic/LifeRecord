@@ -1,11 +1,16 @@
-.container
+.user.border.rounded.p-3.position-relative
   .d-flex.align-items-center.gap-3
     - if user.avatar.attached?
       = image_tag user.avatar.variant(resize_to_limit: [100, 100]), class: "rounded shadow-sm img-fluid"
     - else
       = image_tag "default_avatar.png", class: "rounded img-fluid", width: 85, height: 85
-    .text
-      %h3.mt-2.mb-2
-        = link_to "#{user.full_name}", user, style: "text-decoration: none;"
+
+    .d-flex.flex-column
+      %h3.mb-1
+        = link_to user.full_name,
+          user,
+          class: "text-decoration-none fw-bold stretched-link text-dark"
+
       %strong Birthday:
-      = user.birthday.strftime("%B %d, %Y")
+      .text-muted.small
+        = user.birthday.strftime("%B %d, %Y")
