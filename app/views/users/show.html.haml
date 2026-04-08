@@ -22,4 +22,6 @@
 
   = render "employment_records/list", user: @user, is_own_profile: is_own_profile
 
-  = render "documents/list", documents: @user.documents, new_record_path: new_user_document_path(@user)
+  = render "documents/list", documents: @user.documents,
+                             new_record_path: new_user_document_path(@user),
+                             is_own_profile: is_own_profile

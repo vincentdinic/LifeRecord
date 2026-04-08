@@ -4,10 +4,12 @@
   .d-flex.justify-content-between.align-items-center.mb-3
     %h3.mb-0
       Documents
+      // TODO - change this so that a user can only add documents if it is their profile/record
+      // - if is_own_profile
     - if admin
       = link_to "Add Document",
         local_assigns[:new_record_path],
-        class: "btn btn-primary btn-sm"
+        class: "btn btn-success btn-sm"
 
   - if documents.any?
     .documents.border-top

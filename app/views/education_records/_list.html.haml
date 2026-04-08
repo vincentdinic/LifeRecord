@@ -5,7 +5,7 @@
     - if is_own_profile
       = link_to "Add Record",
         new_user_education_record_path(user),
-        class: "btn btn-primary btn-sm"
+        class: "btn btn-success btn-sm"
 
   - if user.education_records.any?
     - user.education_records.order(start_date: :desc).each do |record|
@@ -30,12 +30,12 @@
             = record.start_date&.strftime("%Y")
           - if record.city.present?
             %span.text-muted.small
-              -
+              \-
             %span.text-muted.small
               = [record.city, record.state].compact.join(", ")
           - if record.gpa.present?
             %span.text-muted.small
-              -
+              \-
             %span.text-muted.small
               GPA: #{record.gpa}
   - else

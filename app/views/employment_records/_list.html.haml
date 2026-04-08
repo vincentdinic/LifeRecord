@@ -18,8 +18,21 @@
             = link_to record.company_name,
               employment_record_path(record),
               class: "fw-bold stretched-link text-decoration-none text-dark"
-          - if record.current?
-            %span.badge.bg-success Current
-          - else
+            - if record.current?
+              %span.badge.bg-success Current
+            - else
+              %span.text-muted.small
+                = record.start_date.strftime("%b %Y") + " - " + record.end_date.strftime("%b %Y")
+          .d-flex.gap-2.mt-1.small
+            - if record.department.present?
+              = record.department.titleize
+              %span.small
+                \-
+            = record.role.titleize
+          .d-flex.gap-2.mt-1
+            .small
+          - if record.city.present?
+            %span.text-muted.small.mt-2
+              -
             %span.text-muted.small
-              = record.end_date&.strftime("%Y")
+              = [record.city, record.state].compact.join(", ")
