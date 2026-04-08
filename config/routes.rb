@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   resources :users, only: [ :show, :edit, :update ] do
     resources :education_records, shallow: true
+    resources :employment_records, shallow: true
     resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
   end
 
