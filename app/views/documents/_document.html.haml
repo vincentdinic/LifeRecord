@@ -1,5 +1,7 @@
-.d-flex.justify-content-between.align-items-center.ps-2.py-2.border-bottom
+.document.d-flex.justify-content-between.align-items-center.ps-2.py-2.border-bottom
   %span
-    = link_to document.title, document_path(document), class: "text-decoration-none"
+    = link_to document.title,
+            document_path(document),
+            class: "text-decoration-none fw-bold text-dark stretched-link"
   %span.badge.bg-secondary
     = document.document_type

@@ -21,9 +21,11 @@
       .mb-1.small
         = record.degree_type.humanize
       - if record.field_of_study.present?
-        .mb-1.small.text-muted= record.field_of_study
+        .mb-1.small.text-muted
+          = record.field_of_study
       .d-flex.gap-2.mt-1
-        %span.text-muted.small= record.start_date&.strftime("%Y")
+        %span.text-muted.small
+          = record.start_date&.strftime("%Y")
         - if record.city.present?
           %span.text-muted.small
             -

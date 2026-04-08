@@ -56,13 +56,4 @@
           %br
           = [@education_record.city, @education_record.state, @education_record.country].compact.join(", ")
 
-  .body-card
-    .d-flex.justify-content-between.align-items-center.mb-3
-      %h3.mb-0 Documents
-      - if is_own_profile
-        = link_to "Add Document",
-          "#",
-          class: "btn btn-primary btn-sm"
-    - if @education_record.documents.any?
-      - @education_record.documents.each do |document|
-        = render "documents/document", document: document
+  = render "documents/list", documents: @education_record.documents

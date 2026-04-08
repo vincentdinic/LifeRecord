@@ -7,7 +7,7 @@ class Property < ApplicationRecord
   enum :occupancy_status, {
     primary: 0,
     secondary: 1,
-    vacant: 2
+    vacant: 2 # could change to rental/income property
   }
 
   enum :ownership_status, {

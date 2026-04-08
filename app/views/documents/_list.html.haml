@@ -1,0 +1,17 @@
+- admin = @current_family.admin?(current_user)
+
+.body-card
+  .d-flex.justify-content-between.align-items-center.mb-3
+    %h3.mb-0 Documents
+    - if admin
+      = link_to "Add Document",
+        local_assigns[:new_record_path],
+        class: "btn btn-primary btn-sm"
+
+  - if documents.any?
+    - documents.each do |document|
+      .documents.border-top.position-relative
+        = render "documents/document", document: document
+  - else
+    %p.text-muted
+      No documents have been added yet.

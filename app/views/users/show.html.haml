@@ -24,15 +24,4 @@
   -# .body-card
   -#   = render "employment_records/list", user: @user, is_own_profile: is_own_profile
 
-  .body-card
-    .section-header.d-flex.justify-content-between.align-items-center.mb-3
-      %h3.mb-0 Documents
-      - if is_own_profile
-        = link_to "Add Document",
-          new_user_document_path(@user),
-          class: "btn btn-primary btn-sm"
-    - if @user.documents.any?
-      - @user.documents.order(created_at: :desc).each do |document|
-        = render "documents/document", document: document
-    - else
-      %p.text-muted No documents yet.
+  = render "documents/list", documents: @user.documents, new_record_path: new_user_document_path(@user)
