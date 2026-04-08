@@ -10,13 +10,13 @@
       .col-2
         - if admin
           .record-actions.justify-content-end.align-items-center
-            = link_to "New Property", new_family_property_path, class: 'btn btn-primary'
+            = link_to "New Property", new_family_property_path, class: 'btn btn-success'
 
   .body-card
     - if @properties.any?
-      %ul.list-group
+      .properties.list-group
         - @properties.each do |property|
-          .border.rounded.p-3
+          .property.border.rounded.p-3.position-relative
             = render property
     - else
       .text-muted No properties added yet.

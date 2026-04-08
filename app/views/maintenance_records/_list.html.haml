@@ -7,9 +7,9 @@
         class: "action-btn btn btn-primary"
 
   - if parent.maintenance_records.any?
-    .maintenance-records.position-relative
+    .maintenance-records
       - parent.maintenance_records.order(performed_on: :desc).each do |record|
-        .maintenance-record.border.rounded.p-3.mb-2
+        .maintenance-record.border.rounded.p-3.mb-2.position-relative
           .d-flex.justify-content-between.align-items-start
             %strong
               = link_to record.title,
