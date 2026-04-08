@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_07_012456) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_08_135748) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -79,6 +79,28 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_07_012456) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_education_records_on_user_id"
+  end
+
+  create_table "employment_records", force: :cascade do |t|
+    t.string "city"
+    t.string "company_name", null: false
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.boolean "current", default: false, null: false
+    t.string "department"
+    t.string "employment_status", null: false
+    t.string "employment_type", null: false
+    t.date "end_date"
+    t.string "location_type", null: false
+    t.string "pay_day"
+    t.string "role", null: false
+    t.decimal "salary", precision: 10, scale: 2
+    t.string "salary_type"
+    t.date "start_date", null: false
+    t.string "state"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_employment_records_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -178,6 +200,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_07_012456) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "documents", "users", column: "uploaded_by_id"
   add_foreign_key "education_records", "users"
+  add_foreign_key "employment_records", "users"
   add_foreign_key "events", "families"
   add_foreign_key "family_users", "families"
   add_foreign_key "family_users", "users"

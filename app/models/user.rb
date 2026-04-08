@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :events, through: :user_events
 
   has_many :education_records, dependent: :destroy
+  has_many :employment_records, dependent: :destroy
   has_many :documents, as: :documentable, dependent: :destroy
 
   def full_name

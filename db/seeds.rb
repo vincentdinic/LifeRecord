@@ -8,6 +8,7 @@ def seed_development
   # seed_vehicles
   seed_maintenance_records
   seed_education_records
+  seed_employment_records
   seed_documents
 end
 
@@ -99,6 +100,15 @@ def seed_education_records
   end
 end
 
+def seed_employment_records
+  puts "Seeding Employment Records"
+  User.all.each do |user|
+    rand(1..8).times do
+      FactoryBot.create :employment_record, user: user
+    end
+  end
+end
+
 def seed_documents
   puts "Seeding Documents"
   uploader = User.find_by(email: "vincent@example.com")
@@ -126,6 +136,12 @@ def seed_documents
 
     user.education_records.each do |record|
       rand(1..4).times do
+        FactoryBot.create :document, documentable: record, uploaded_by: user
+      end
+    end
+
+    user.employment_records.each do |record|
+      rand(1..8).times do
         FactoryBot.create :document, documentable: record, uploaded_by: user
       end
     end
