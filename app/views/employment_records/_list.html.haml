@@ -1,0 +1,25 @@
+- admin = @current_family.admin?(current_user)
+
+.body-card
+  .d-flex.justify-content-between.align-items-center.mb-3
+    %h3.mb-0
+      Employment History
+
+    - if is_own_profile
+      = link_to "Add Record",
+                new_user_employment_record_path(user),
+                class: "btn btn-success btn-sm"
+  
+  - if user.employment_records.any?
+    .employment-records
+      - user.employment_records.order(start_date: :desc).each do |record|
+        .employment-record.border.rounded.p-3.mb-2.position-relative
+          .d-flex.justify-content-between.align-items-start
+            = link_to record.company_name,
+              employment_record_path(record),
+              class: "fw-bold stretched-link text-decoration-none text-dark"
+          - if record.current?
+            %span.badge.bg-success Current
+          - else
+            %span.text-muted.small
+              = record.end_date&.strftime("%Y")

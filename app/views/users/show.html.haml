@@ -18,10 +18,8 @@
               edit_user_path(@user),
               class: "btn btn-primary action-btn"
 
-  .body-card
-    = render "education_records/list", user: @user, is_own_profile: is_own_profile
+  = render "education_records/list", user: @user, is_own_profile: is_own_profile
 
-  -# .body-card
-  -#   = render "employment_records/list", user: @user, is_own_profile: is_own_profile
+  = render "employment_records/list", user: @user, is_own_profile: is_own_profile
 
   = render "documents/list", documents: @user.documents, new_record_path: new_user_document_path(@user)
