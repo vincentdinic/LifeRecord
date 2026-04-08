@@ -111,7 +111,7 @@ def seed_documents
       end
 
       property.maintenance_records.each do |record|
-        rand(1..3).times do
+        rand(1..8).times do
           FactoryBot.create :document, documentable: record, uploaded_by: family.users.sample
         end
       end
@@ -120,12 +120,12 @@ def seed_documents
 
   puts "  User Documents"
   User.all.each do |user|
-    rand(1..3).times do
+    rand(1..6).times do
       FactoryBot.create :document, documentable: user, uploaded_by: user
     end
 
     user.education_records.each do |record|
-      rand(1..2).times do
+      rand(1..4).times do
         FactoryBot.create :document, documentable: record, uploaded_by: user
       end
     end

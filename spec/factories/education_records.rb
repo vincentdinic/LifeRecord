@@ -19,6 +19,6 @@ FactoryBot.define do
       end
     end
 
-    gpa { [ 1.5, 2.0, 2.5, 2.8, 3.0, 3.25, 3.5, 3.7, 4.0 ] if [ true, false ].sample }
+    gpa { [ 1.5, 2.0, 2.5, 2.8, 3.0, 3.25, 3.5, 3.7, 4.0 ].sample if [ true, false ].sample }
   end
 end
