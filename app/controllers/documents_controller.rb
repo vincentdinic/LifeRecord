@@ -40,6 +40,8 @@ class DocumentsController < ApplicationController
       @parent = MaintenanceRecord.find(params[:maintenance_record_id])
     elsif params[:education_record_id]
       @parent = EducationRecord.find(params[:education_record_id])
+    elsif params[:employment_record_id]
+      @parent = EmploymentRecord.find(params[:employment_record_id])
     elsif params[:user_id]
       @parent = User.find(params[:user_id])
     end
@@ -56,6 +58,8 @@ class DocumentsController < ApplicationController
       maintenance_record_path(@parent)
     elsif @parent.is_a?(EducationRecord)
       education_record_path(@parent)
+    elsif @parent.is_a?(EmploymentRecord)
+      employment_record_path(@parent)
     else
       polymorphic_path([ @current_family, @parent ])
     end
@@ -68,6 +72,10 @@ class DocumentsController < ApplicationController
       user_documents_path(@parent)
     elsif @parent.is_a?(MaintenanceRecord)
       maintenance_record_documents_path(@parent)
+    elsif @parent.is_a?(EducationRecord)
+      education_record_documents_path(@parent)
+    elsif @parent.is_a?(EmploymentRecord)
+      employment_record_documents_path(@parent)
     else
       polymorphic_path([ @current_family, @parent, @document ])
     end

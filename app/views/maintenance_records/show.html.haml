@@ -46,4 +46,6 @@
               %br
               = number_to_currency(@maintenance_record.cost)
 
-  = render "documents/list", documents: @maintenance_record.documents, new_record_path: new_maintenance_record_document_path(@maintenance_record)
+  = render "documents/list",
+           documents: @maintenance_record.documents,
+           new_record_path: new_maintenance_record_document_path(@maintenance_record)

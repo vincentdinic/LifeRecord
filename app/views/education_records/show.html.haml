@@ -56,4 +56,6 @@
           %br
           = [@education_record.city, @education_record.state, @education_record.country].compact.join(", ")
 
-  = render "documents/list", documents: @education_record.documents
+  = render "documents/list",
+           documents: @education_record.documents,
+           new_record_path: new_education_record_document_path(@education_record)

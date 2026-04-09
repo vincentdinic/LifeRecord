@@ -70,4 +70,6 @@
             = @property.purchase_date || "-"
   = render "maintenance_records/list", parent: @property, family: @current_family, admin: admin
 
-  = render "documents/list", documents: @property.documents, new_record_path: new_family_property_document_path(@current_family, @property) 
+  = render "documents/list",
+           documents: @property.documents,
+           new_record_path: new_family_property_document_path(@current_family, @property) 

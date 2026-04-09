@@ -68,4 +68,6 @@
           %br
           = [@employment_record.city, @employment_record.state, @employment_record.country].compact.join(", ")
 
-  = render "documents/list", documents: @employment_record.documents
+  = render "documents/list",
+           documents: @employment_record.documents,
+           new_record_path: new_employment_record_document_path(@employment_record)

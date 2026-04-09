@@ -1,4 +1,4 @@
-- url = @education_record.persisted? ? education_record_path(@education_record) : user_education_records_path(@user)
+- url = @employment_record.persisted? ? employment_record_path(@employment_record) : user_employment_records_path(@user)
 
 = form_with(model: @employment_record, url: url) do |form|
   // Company name *
@@ -9,36 +9,45 @@
     // Department
     .form-group.me-2.w-50
       = form.label :department, "Department", class: "form-label"
-      = form.text_field, :department, class: "form-control"
+      = form.text_field :department, class: "form-control"
     // Role *
     .form-group.w-50
       = form.label :role, "Role *", class: "form-label"
       = form.text_field :role, class: "form-control"
+
   .d-flex.mb-3
     // Employment_type *
-    .form-group.w-50.me-2
+    .form-group.w-30.me-2
       = form.label :employment_type, "Employment Type *", class: "form-label"
       = form.select :employment_type, 
                     EmploymentRecord.employment_types.keys.map { |k| [k.humanize, k] },
-                    { include_blank: false },
+                    { selected: :full_time },
                     class: "form-control",
                     required: true
     // Employment_status *
-    .form-group.w-50
+    .form-group.w-30.me-2
       = form.label :employment_status, "Employment Status *", class: "form-label"
       = form.select :employment_status,
                     EmploymentRecord.employment_statuses.keys.map { |k| [k.humanize, k] },
-                    { include_blank: false },
+                    { selected: :active },
                     class: "form-control",
                     required: true
+    // Location_type *
+    .form-group.w-30.me-2
+      = form.label :location_type, "Location Type *", class: "form-label"
+      = form.select :location_type,
+                    EmploymentRecord.location_types.keys.map { |k| [k.humanize, k] },
+                    { selected: :on_site },
+                    class: "form-control",
+                    required: true      
   .d-flex.mb-3
     // Salary_type
     .form-group.w-30.me-2
       = form.label :salary_type, "Salary Type *", class: "form-label"
       = form.select :salary_type,
                     EmploymentRecord.salary_types.keys.map { |k| [k.humanize, k] },
-                    { include_blank: "Select salary type" },
-                    class: "form-control",                    
+                    { include_blank: "Select salary type", selected: :annual },
+                    class: "form-control"              
     // Salary_amount
     .form-group.w-30.me-2 
       = form.label :salary, "Salary Amount", class: "form-label"
@@ -46,30 +55,22 @@
     // Pay_day 
     .form-group.w-30 
       = form.label :pay_day, "Pay Day", class: "form-label"
-      = form.text_field :pay_day, class: "form-control", placeholder:, "e.g., 1st, 15th, Last of month"
-  .d-flex-mb-3
-    // Location_type *
-    .form-group.w-30.me-2
-      = form.label :location_type, "Location Type *", class: "form-label"
-      = form.select :location_type,
-                    EmploymentRecord.location_types.keys.map { |k| [k.humanize, k] },
-                    { include_blank: false, default: on_site },
-                    class: "form-control",
-                    required: true      
+      = form.text_field :pay_day, class: "form-control", placeholder: "e.g., 1st, 15th, Last of month"
+  .d-flex.mb-3
     // Start_date *
     .form-group.me-2.w-25
       = form.label :start_date, "Start Date *", class: "form-label"
       = form.date_field :start_date, required: true, class: "form-control"
-    // end_date
-    .form-group.w-25
-      = form.label :end_date, "End Date", class: "form-label"
-      = form.date_field :end_date, class: "form-control"
-    // current *
-    
-    .form-group.mb-3
-      .form-check
-        = form.check_box :current, class: "form-check-input"
-        = form.label :current, "Currently attending", class: "form-check-label"
+    .form-group
+      // end_date
+      .form-group
+        = form.label :end_date, "End Date", class: "form-label"
+        = form.date_field :end_date, class: "form-control"
+      // current *
+      .form-group
+        .form-check
+          = form.check_box :current, class: "form-check-input"
+          = form.label :current, "Currently attending", class: "form-check-label"
   .d-flex.mb-3
     // City
     .form-group.w-25.me-2

@@ -17,6 +17,14 @@ Rails.application.routes.draw do
     resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
   end
 
+  resources :education_records, only: [] do
+    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+  end
+
+  resources :employment_records, only: [] do
+    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+  end
+
   resources :maintenance_records, only: [] do
     resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
   end
