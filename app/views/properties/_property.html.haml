@@ -33,6 +33,6 @@
 
     .col-12.col-md-4.mt-3.mt-md-0.text-md-end
       - if property.image.attached?
-        = image_tag property.image.variant(resize_to_limit: [400, 250]), class: "rounded shadow-sm img-fluid"
+        = image_tag property.image.variant(resize_to_fill: [400, 250]), class: "rounded shadow-sm img-fluid"
       - else
         = image_tag "default_property.jpg", class: "rounded shadow-sm img-fluid"

@@ -1,7 +1,11 @@
 = form_with(model: @user,  html: { method: :put, multipart: true}) do |f|
-  .form-group.mb-3
-    = f.label :first_name, "First Name", class: "form-label"
-    = f.text_field :first_name, autofocus: true, class: "form-control"
+  .d-flex
+    .form-group.mb-3.w-50.me-2
+      = f.label :first_name, "First Name", class: "form-label"
+      = f.text_field :first_name, autofocus: true, class: "form-control"
+    .form-group.mb-3.w-50
+      = f.label :middle_name, "Middle Name", class: "form-label"
+      = f.text_field :middle_name, class: "form-control"
   .form-group.mb-3
     = f.label :last_name, "Last Name", class: "form-label"
     = f.text_field :last_name, class: "form-control"
@@ -10,14 +14,14 @@
     = f.email_field :email, autocomplete: "email", class: "form-control"
   .form-group.mb-3
     = f.label :birthday, "Birthday", class: "form-label"
-    .d-flex.align-content-between
+    .d-flex.align-content-between.w-50 
       = f.date_select :birthday,
         { start_year: Date.today.year - 80,
           end_year: Date.today.year,
           default: { month: 1, day: 1, year: 2000 },
           order: [:month, :day, :year],
           include_blank: false },
-        { class: "form-select me-2" }
+        { class: "form-select me-2 w-30" }
   .form-group.mb-3.w-40
     = f.label :avatar, "Avatar Image", class: "form-label"
     = f.file_field :avatar, class: "form-control"
