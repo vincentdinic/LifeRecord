@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_08_135748) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_10_164401) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -195,6 +195,25 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_08_135748) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vehicles", force: :cascade do |t|
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.decimal "current_value", precision: 10, scale: 2
+    t.bigint "family_id", null: false
+    t.string "fuel_type"
+    t.string "license_plate"
+    t.string "make", null: false
+    t.string "model", null: false
+    t.string "nickname"
+    t.date "purchase_date"
+    t.decimal "purchase_price", precision: 10, scale: 2
+    t.datetime "updated_at", null: false
+    t.string "vehicle_type", null: false
+    t.string "vin"
+    t.integer "year"
+    t.index ["family_id"], name: "index_vehicles_on_family_id"
+  end
+
   add_foreign_key "accounts", "families"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
@@ -208,4 +227,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_08_135748) do
   add_foreign_key "properties", "families"
   add_foreign_key "user_events", "events"
   add_foreign_key "user_events", "users"
+  add_foreign_key "vehicles", "families"
 end
