@@ -1,0 +1,73 @@
+- is_own_profile = current_user == @employment_record.user
+
+.container
+  .header-card
+    .row.align-items-center
+      .col-2
+        .record-actions
+          = link_to "Back",
+            user_path(@employment_record.user),
+            class: "action-btn btn btn-secondary"
+      .col-8.text-center
+        %h1
+          = @employment_record.company_name
+      .col-2
+        - if is_own_profile
+          .record-actions.justify-content-end
+            = link_to "Edit",
+              edit_employment_record_path(@employment_record),
+              class: "btn btn-primary action-btn"
+
+  .body-card
+    %h3.mb-3
+      Record Details
+
+    .row.mb-3
+      .col-4.col-md-3
+        %strong Role
+        %br
+        = @employment_record.role
+      - if @employment_record.department.present?
+        .col-4.col-md-3
+          %strong Department
+          %br
+          = @employment_record.department
+    
+    .row.mb-3
+      - if @employment_record.salary_type.present?
+        .col-4.col-md-3
+          %strong Salary Type
+          %br
+          = @employment_record.salary_type.humanize
+      - if @employment_record.salary.present?
+        .col-4.col-md-3
+          %strong Salary
+          %br
+          = "$#{@employment_record.salary}"
+      - if @employment_record.pay_day.present?
+        .col-4.col-md-3
+          %strong Pay Day
+          %br
+          = @employment_record.pay_day
+
+    .row.mb-3
+      .col-4.col-md-3
+        %strong Start Date
+        %br
+        = @employment_record.start_date&.strftime("%B %Y")
+      .col-4.col-md-3
+        %strong End Date
+        %br
+        - if @employment_record.current?
+          %span.badge.bg-success Current
+        - else
+          = @employment_record.end_date&.strftime("%B %Y")
+      - if @employment_record.city.present?
+        .col-4.col-md-3
+          %strong Location
+          %br
+          = [@employment_record.city, @employment_record.state, @employment_record.country].compact.join(", ")
+
+  = render "documents/list",
+           documents: @employment_record.documents,
+           new_record_path: new_employment_record_document_path(@employment_record)

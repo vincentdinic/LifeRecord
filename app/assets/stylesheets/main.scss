@@ -35,6 +35,51 @@ body {
 .action-btn {
   width: 110px;
 }
-.form-date{
+
+.form-date {
   width: 25%;
+}
+
+.property:hover {
+  transform: scale(1.00625);
+  margin-bottom: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.maintenance-record:hover {
+  transform: scale(1.00625);
+  margin-bottom: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.education-record:hover {
+  transform: scale(1.00625);
+  margin-bottom: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.employment-record:hover {
+  transform: scale(1.00625);
+  margin-bottom: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.document:hover {
+  transform: scale(1.00625);
+  margin-bottom: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+.user {
+  position: relative;
+}
+.user:hover { 
+  transform: scale(1.00625);
+  margin-bottom: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.account:hover {
+  transform: scale(1.00625);
+  margin-bottom: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
 }

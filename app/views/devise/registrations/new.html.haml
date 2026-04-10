@@ -4,7 +4,7 @@
     %h1
       Sign Up
   .body-card
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f|
       = render "devise/shared/error_messages", resource: resource
       .form-group.mb-3
         = f.label :first_name, "First Name", class: "form-label"
@@ -25,6 +25,9 @@
               order: [:month, :day, :year],
               include_blank: false },
             { class: "form-select me-2" }
+      .form-group.w-40
+        = f.label :avatar, "Avatar Image", class: "form-label"
+        = f.file_field :avatar, class: "form-control"
       .form-group.mb-3
         = f.label :password, class: "form-label"
         = f.password_field :password, autocomplete: "new-password", class: "form-control"

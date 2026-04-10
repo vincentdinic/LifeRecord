@@ -1,0 +1,38 @@
+- admin = @current_family.admin?(current_user)
+
+.body-card
+  .d-flex.justify-content-between.align-items-center.mb-3
+    %h3.mb-0
+      Employment History
+
+    - if is_own_profile
+      = link_to "Add Record",
+                new_user_employment_record_path(user),
+                class: "btn btn-success btn-sm"
+  
+  - if user.employment_records.any?
+    .employment-records
+      - user.employment_records.order(start_date: :desc).each do |record|
+        .employment-record.border.rounded.p-3.mb-2.position-relative
+          .d-flex.justify-content-between.align-items-start
+            = link_to record.company_name,
+              employment_record_path(record),
+              class: "fw-bold stretched-link text-decoration-none text-dark"
+            - if record.current?
+              %span.badge.bg-success Current
+            - else
+              %span.text-muted.small
+                = record.start_date.strftime("%b %Y") + " - " + record.end_date.strftime("%b %Y")
+          .d-flex.gap-2.mt-1.small
+            - if record.department.present?
+              = record.department.titleize
+              %span.small
+                \-
+            = record.role.titleize
+          .d-flex.gap-2.mt-1
+            .small
+          - if record.city.present?
+            %span.text-muted.small.mt-2
+              -
+            %span.text-muted.small
+              = [record.city, record.state].compact.join(", ")

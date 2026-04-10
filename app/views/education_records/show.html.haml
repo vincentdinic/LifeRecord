@@ -1,0 +1,61 @@
+- is_own_profile = current_user == @education_record.user
+
+.container
+  .header-card
+    .row.align-items-center
+      .col-2
+        .record-actions
+          = link_to "Back",
+            user_path(@education_record.user),
+            class: "action-btn btn btn-secondary"
+      .col-8.text-center
+        %h1
+          = @education_record.school_name
+      .col-2
+        - if is_own_profile
+          .record-actions.justify-content-end
+            = link_to "Edit",
+              edit_education_record_path(@education_record),
+              class: "btn btn-primary action-btn"
+
+  .body-card
+    %h3.mb-3
+      Record Details
+
+    .row.mb-3
+      .col-4.col-md-3
+        %strong Degree
+        %br
+        = @education_record.degree_type.humanize
+      - if @education_record.field_of_study.present?
+        .col-4.col-md-3
+          %strong Field of Study
+          %br
+          = @education_record.field_of_study
+      - if @education_record.gpa.present?
+        .col-4.col-md-3
+          %strong GPA
+          %br
+          = "#{@education_record.gpa} / 4.0"
+
+    .row.mb-3
+      .col-4.col-md-3
+        %strong Start Date
+        %br
+        = @education_record.start_date&.strftime("%B %Y")
+      .col-4.col-md-3
+        %strong End Date
+        %br
+        - if @education_record.current?
+          %span.badge.bg-success Current
+        - else
+          = @education_record.end_date&.strftime("%B %Y")
+      - if @education_record.city.present?
+        .col-4.col-md-3
+          %strong Location
+          %br
+          = [@education_record.city, @education_record.state, @education_record.country].compact.join(", ")
+
+  = render "documents/list",
+           documents: @education_record.documents,
+           new_record_path: new_education_record_document_path(@education_record)

@@ -6,7 +6,7 @@
       .col-2
         .record-actions
           = link_to "Back",
-            :back,
+            polymorphic_path([@current_family, @maintenance_record.maintainable]),
             class: "action-btn btn btn-secondary"
       .col-8.text-center
         %h1
@@ -46,17 +46,6 @@
               %br
               = number_to_currency(@maintenance_record.cost)
 
-  .body-card
-    .d-flex.justify-content-between.align-items-center.mb-3
-      %h3.mb-0 Documents
-      - if admin
-        = link_to "Add Document",
-          new_maintenance_record_document_path(@maintenance_record),
-          class: "btn btn-primary btn-sm"
-
-    - if @maintenance_record.documents.any?
-      - @maintenance_record.documents.each do |document|
-        = render "documents/document", document: document
-    - else
-      %p.text-muted
-        No documents have been added yet.
+  = render "documents/list",
+           documents: @maintenance_record.documents,
+           new_record_path: new_maintenance_record_document_path(@maintenance_record)

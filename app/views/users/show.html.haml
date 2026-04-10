@@ -1,13 +1,28 @@
+- is_own_profile = current_user == @user
+
 .container
   .header-card
-    %h1
-      = @user.full_name
-  .body-card
-    %h3 Education History
-    = Faker::Lorem.paragraphs(number: 10).join(" ")
-  .body-card
-    %h3 Employment History
-    = Faker::Lorem.paragraphs(number: 10).join(" ")
-  .body-card
-    %h3 Documents & Notes
-    = Faker::Lorem.paragraphs(number: 30).join(" ")
+    .row.align-items-center
+      .col-2
+        .record-actions
+          = link_to "Back",
+            root_path,
+            class: "action-btn btn btn-secondary"
+      .col-8.text-center
+        %h1
+          = @user.full_name
+      .col-2
+        - if is_own_profile
+          .record-actions.justify-content-end
+            = link_to "Edit",
+              edit_user_path(@user),
+              class: "btn btn-primary action-btn"
+
+  = render "education_records/list", user: @user, is_own_profile: is_own_profile
+
+  = render "employment_records/list", user: @user, is_own_profile: is_own_profile
+
+  = render "documents/list",
+           documents: @user.documents,
+           new_record_path: new_user_document_path(@user),
+           is_own_profile: is_own_profile

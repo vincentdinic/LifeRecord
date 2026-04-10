@@ -70,17 +70,6 @@
             = @property.purchase_date || "-"
   = render "maintenance_records/list", parent: @property, family: @current_family, admin: admin
 
-  .body-card
-    .d-flex.justify-content-between.align-items-center.mb-3
-      %h3.mb-0 Documents
-      - if admin
-        = link_to "Add Document",
-          new_family_property_document_path(@current_family, @property),
-          class: "btn btn-primary btn-sm"
-    - if @property.documents.any?
-      - @property.documents.each do |document|
-        = render "documents/document", document: document
-
-    - else
-      %p.text-muted
-        No documents have been added yet.
+  = render "documents/list",
+           documents: @property.documents,
+           new_record_path: new_family_property_document_path(@current_family, @property) 

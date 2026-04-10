@@ -27,10 +27,6 @@
         = f.password_field :current_password, autocomplete: "current-password", class: "form-control"
         .form-text 
           (we need your current password to confirm your changes)
-      .d-flex.mb-3
-        .form-group.w-40
-          = f.label :avatar, "Avatar Image", class: "form-label"
-          = f.file_field :avatar, class: "form-control"
       .record-actions.mb-3
         = f.submit "Save", class: "action-btn btn btn-success"
     = link_to "Back", :back
