@@ -20,9 +20,16 @@ class VehiclesController < ApplicationController
     end
   end
 
+  def update
+    if @vehicle.update(vehicle_params)
+      redirect_to family_vehicle_path(@current_family, @vehicle), notice: "Vehicle was successfully updated.", status: :see_other
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
   def destroy
     @vehicle.destroy!
-    redirect_to family_vehicles_path(@current_family), notice: "Vehicle was successfully deleted"
+    redirect_to family_vehicles_path(@current_family), notice: "Vehicle was successfully deleted", status: :see_other
   end
 
   def edit

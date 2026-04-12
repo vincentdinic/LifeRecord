@@ -1,0 +1,73 @@
+= form_with(model: [@current_family, @vehicle], html: { multipart: true }) do |form|
+  .d-flex.mb-3
+    .form-group.me-2.w-50
+      = form.label :vehicle_type, "Vehicle Type *", class: "form-label"
+      = form.select :vehicle_type,
+          Vehicle.vehicle_types.keys.map { |k| [k.humanize, k] },
+          { selected: :sedan },
+          class: "form-select",
+          required: true
+
+    .form-group.w-50
+      = form.label :nickname, "Nickname", class: "form-label"
+      = form.text_field :nickname, class: "form-control"
+
+  .d-flex.mb-3
+    .form-group.me-2.w-50
+      = form.label :make, "Make *", class: "form-label"
+      = form.text_field :make, required: true, class: "form-control"
+
+    .form-group.w-50
+      = form.label :model, "Model *", class: "form-label"
+      = form.text_field :model, required: true, class: "form-control"
+
+  .d-flex.mb-3
+    .form-group.me-2.w-25
+      = form.label :year, "Year", class: "form-label"
+      = form.select :year,
+          ((Date.today.year - 100)..Date.today.year).to_a.reverse,
+          { include_blank: true },
+          class: "form-select"
+
+    .form-group.me-2.w-25
+      = form.label :color, "Color", class: "form-label"
+      = form.text_field :color, class: "form-control"
+
+    .form-group.w-25
+      = form.label :fuel_type, "Fuel Type", class: "form-label"
+      = form.select :fuel_type,
+          Vehicle.fuel_types.keys.map { |k| [k.humanize, k] },
+          { selected: :gasoline, include_blank: true },
+          class: "form-select"
+
+  .d-flex.mb-3
+    .form-group.me-2.w-50
+      = form.label :vin, "VIN", class: "form-label"
+      = form.text_field :vin, class: "form-control"
+
+    .form-group.w-50
+      = form.label :license_plate, "License Plate", class: "form-label"
+      = form.text_field :license_plate, class: "form-control"
+
+  .d-flex.mb-3
+    .form-group.me-2.w-25
+      = form.label :purchase_date, "Purchase Date", class: "form-label"
+      = form.date_field :purchase_date, class: "form-control", max: Time.zone.today
+
+    .form-group.me-2.w-25
+      = form.label :purchase_price, "Purchase Price", class: "form-label"
+      = form.number_field :purchase_price, class: "form-control", min: 0, step: 0.01, placeholder: "0.00"
+      .form-text USD
+
+    .form-group.w-25
+      = form.label :current_value, "Current Value", class: "form-label"
+      = form.number_field :current_value, class: "form-control", min: 0, step: 0.01, placeholder: "0.00"
+      .form-text USD
+
+  .d-flex.mb-3
+    .form-group.w-40
+      = form.label :image, "Vehicle Image", class: "form-label"
+      = form.file_field :image, class: "form-control"
+
+  .record-actions
+    = form.submit "Save", class: "action-btn btn btn-success"

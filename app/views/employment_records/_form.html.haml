@@ -22,7 +22,7 @@
       = form.select :employment_type, 
                     EmploymentRecord.employment_types.keys.map { |k| [k.humanize, k] },
                     { selected: :full_time },
-                    class: "form-control",
+                    class: "form-select",
                     required: true
     // Employment_status *
     .form-group.w-30.me-2
@@ -30,7 +30,7 @@
       = form.select :employment_status,
                     EmploymentRecord.employment_statuses.keys.map { |k| [k.humanize, k] },
                     { selected: :active },
-                    class: "form-control",
+                    class: "form-select",
                     required: true
     // Location_type *
     .form-group.w-30.me-2
@@ -38,7 +38,7 @@
       = form.select :location_type,
                     EmploymentRecord.location_types.keys.map { |k| [k.humanize, k] },
                     { selected: :on_site },
-                    class: "form-control",
+                    class: "form-select",
                     required: true      
   .d-flex.mb-3
     // Salary_type
@@ -47,7 +47,7 @@
       = form.select :salary_type,
                     EmploymentRecord.salary_types.keys.map { |k| [k.humanize, k] },
                     { include_blank: "Select salary type", selected: :annual },
-                    class: "form-control"              
+                    class: "form-select"              
     // Salary_amount
     .form-group.w-30.me-2 
       = form.label :salary, "Salary Amount", class: "form-label"

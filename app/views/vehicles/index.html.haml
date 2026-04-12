@@ -1,0 +1,23 @@
+- content_for :title, "Vehicles"
+- admin = @current_family.admin?(current_user)
+
+.container
+  .header-card
+    .row
+      .col-2
+      .col-8
+        %h1 Vehicles
+      .col-2
+        - if admin
+          .record-actions.justify-content-end.align-items-center
+            = link_to "New Vehicle", new_family_vehicle_path, class: 'btn btn-success'
+
+  .body-card
+    - if @vehicles.any?
+      .vehicles.list-group
+        - @vehicles.each do |vehicle|
+          .vehicle.border.rounded.p-3.position-relative
+            = render vehicle # TODO - create partial
+    
+    - else
+      .text-muted No vehicles added yet. 
