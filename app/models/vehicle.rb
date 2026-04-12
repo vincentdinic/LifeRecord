@@ -29,4 +29,8 @@ class Vehicle < ApplicationRecord
   validates :make, :model, :vehicle_type, presence: true
   # and vin if it's a road vehicle
   validates :vin, presence: true, if: -> { ROAD_VEHICLES.include?(vehicle_type) }
+
+  def display_name
+    nickname.presence || [ year, make, model ].compact.join(" ")
+  end
 end

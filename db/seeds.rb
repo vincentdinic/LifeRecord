@@ -5,7 +5,7 @@ def seed_development
   seed_accounts
   seed_events
   seed_properties
-  # seed_vehicles
+  seed_vehicles
   seed_maintenance_records
   seed_education_records
   seed_employment_records
@@ -78,6 +78,12 @@ def seed_properties
 end
 
 def seed_vehicles
+  puts "Seeding Vehicles"
+  Family.all.each do |family|
+    4.times do
+      FactoryBot.create :vehicle, family: family
+    end
+  end
 end
 
 def seed_maintenance_records
@@ -86,6 +92,11 @@ def seed_maintenance_records
     family.properties.each do |property|
       rand(2..4).times do
         FactoryBot.create :maintenance_record, maintainable: property, created_by: family.users.sample
+      end
+    end
+    family.vehicles.each do |vehicle|
+      rand(2..4).times do
+        FactoryBot.create :maintenance_record, maintainable: vehicle, created_by: family.users.sample
       end
     end
   end
