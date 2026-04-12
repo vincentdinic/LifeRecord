@@ -43,7 +43,7 @@
                         %li.nav-item.me-5
                             = link_to "Property", family_properties_path(@current_family), class: "nav-link"
                         %li.nav-item.me-5
-                            = link_to "Vehicles", "#", class: "nav-link"
+                            = link_to "Vehicles", family_vehicles_path(@current_family), class: "nav-link"
 
                 - else 
                     %li.nav-item.me-5
