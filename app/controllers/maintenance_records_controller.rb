@@ -47,6 +47,8 @@ class MaintenanceRecordsController < ApplicationController
   def set_parent
     if params[:property_id]
       @parent = @current_family.properties.find(params[:property_id])
+    elsif params[:vehicle_id]
+      @parent = @current_family.vehicles.find(params[:vehicle_id])
     end
   end
 
