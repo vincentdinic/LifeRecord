@@ -1,20 +1,31 @@
 .container
   .header-card
-    %h1
-      #{@current_family.name}'s Calendar
+    .row
+      .col-10
+        %h1
+          #{@current_family.name}'s Calendar
+      - if @current_family.admin?(current_user)
+        .col-2
+          // Convert from bootstrap collapse to modal toggle
+          %span.btn.btn-primary{
+            type: "button",
+            data: {
+              bs_toggle: "collapse",
+              bs_target: "#new-event-form"
+            } }
+            New Event
   .body-card
-    - if @current_family.admin?(current_user)
-      %button.btn.btn-primary.action-btn.ms-4{
-        type: "button",
-        data: {
-          bs_toggle: "collapse",
-          bs_target: "#new-event-form"
-        },
-        aria: { expanded: "false", controls: "new-event-form" }
-      }
-        New Event
-    .d-flex.gap-3
-      .collapse#new-event-form
-        = render "events/form", event: @event
-      .flex-grow-1
-        = render "calendar"
+    %button.btn.btn-success.ms-4{
+      type: "button",
+      data: {
+        bs_toggle: "collapse",
+        bs_target: "#event-filters"
+      } }
+      Event Filters
+    .collapse#event-filters.mt-3
+      Filters Coming Soon
+    // TODO - change to modal
+    .collapse#new-event-form
+      = render "events/form", event: @event
+
+    = render "calendar"

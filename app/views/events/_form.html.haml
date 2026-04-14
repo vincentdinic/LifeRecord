@@ -1,21 +1,25 @@
-.container
+// TODO - Convert into modal
+.container.w-50 
   .body-card
     %h3.mb-3
       %strong
         New Event
     = form_with(model: [@current_family, event]) do |form|
-      .form-group.mb-3
-        = form.label :title, "Event Title", class: "form-label"
+      .form-group.mb-3.w-25
+        = form.label :title, "Event Title *", class: "form-label"
         = form.text_field :title, required: true, class: "form-control"
-      .form-group.mb-3
+      .form-group.mb-3.w-50
         = form.label :description, "Event Description", class: "form-label"
         = form.textarea :description, class: "form-control"
-      .form-group.mb-3
-        = form.label :start_time, "Event Start", class: "form-label"
-        = form.datetime_local_field :start_time, class: "form-control"
-      .form-group.mb-3
-        = form.label :end_time, "Event End", class: "form-label"
-        = form.datetime_local_field :end_time, class: "form-control"
+      .d-flex
+        .form-group.mb-3.w-25.me-2
+          = form.label :start_time, "Event Start *", class: "form-label"
+          = form.datetime_local_field :start_time, class: "form-control",
+                                                  required: true
+        .form-group.mb-3.w-25
+          = form.label :end_time, "Event End *", class: "form-label"
+          = form.datetime_local_field :end_time, class: "form-control",
+                                                required: true
       .form-group.mb-3
         = form.label :user_ids, "Users", class: "form-label"
         - @current_family.users.each do |user|
