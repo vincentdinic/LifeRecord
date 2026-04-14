@@ -46,6 +46,12 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
+.vehicle:hover {
+  transform: scale(1.00625);
+  margin-bottom: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
 .maintenance-record:hover {
   transform: scale(1.00625);
   margin-bottom: 3px;
