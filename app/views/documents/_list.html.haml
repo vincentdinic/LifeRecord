@@ -10,7 +10,7 @@
       = link_to "Add Document",
         local_assigns[:new_record_path],
         class: "btn btn-success btn-sm"
-
+  // Add a sort to document.rb so that documents are rendered in newest -> oldest order
   - if documents.any?
     .documents.border-top
       - documents.each do |document|
