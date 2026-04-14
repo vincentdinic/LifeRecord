@@ -42,7 +42,7 @@
       = form.select :year_built,
                     ((Date.today.year - 150)..Date.today.year).to_a.reverse,
                     { include_blank: true},
-                    { class: 'form-control'}
+                    { class: 'form-select'}
     .form-group.w-25.me-2
       = form.label :purchase_date, "Purchase Date", class: "form-label"
       = form.date_field :purchase_date, class: "form-control", max: Time.zone.today 
@@ -59,7 +59,7 @@
       = form.select :occupancy_status,
         Property.occupancy_statuses.keys.map { |k| [k.humanize, k] },
         {},
-        class: "form-control",
+        class: "form-select",
         required: true
 
     .form-group.w-50
@@ -67,7 +67,7 @@
       = form.select :ownership_status,
         Property.ownership_statuses.keys.map { |k| [k.humanize, k] },
         {},
-        class: "form-control",
+        class: "form-select",
         required: true
   .d-flex.mb-3
     .form-group.w-40

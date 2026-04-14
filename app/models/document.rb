@@ -4,6 +4,8 @@ class Document < ApplicationRecord
   belongs_to :uploaded_by, class_name: "User"
   has_one_attached :file
 
+  scope :recent, -> { order(updated_at: :desc) }
+
   enum :document_type, {
     education: "education",
     employment: "employment",

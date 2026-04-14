@@ -1,0 +1,9 @@
+- content_for :title, "New Vehicle"
+.container.w-50
+  .header-card
+    %h1 New Vehicle
+  .body-card
+    = render "form"
+    .mt-1
+      = link_to "Back", :back
+

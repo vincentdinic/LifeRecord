@@ -33,7 +33,6 @@ class DocumentsController < ApplicationController
   private
 
   def set_parent
-    # to-do - add vehicles and users here when i create them
     if params[:property_id]
       @parent = @current_family.properties.find(params[:property_id])
     elsif params[:maintenance_record_id]
@@ -44,6 +43,8 @@ class DocumentsController < ApplicationController
       @parent = EmploymentRecord.find(params[:employment_record_id])
     elsif params[:user_id]
       @parent = User.find(params[:user_id])
+    elsif params[:vehicle_id]
+      @parent = Vehicle.find(params[:vehicle_id])
     end
   end
 
@@ -51,6 +52,7 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
   end
 
+  # This is because they are shallow routes, like maintenance_record_path(record), instead of family_property_path(@current_family, property)
   def after_save_path
     if @parent.is_a?(User)
       user_path(@parent)
@@ -65,6 +67,7 @@ class DocumentsController < ApplicationController
     end
   end
 
+  # Same logic as before, this method tells the document form which model to send the data to
   def form_url
     if @document.persisted?
       document_path(@document)

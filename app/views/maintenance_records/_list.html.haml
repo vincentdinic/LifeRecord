@@ -4,7 +4,7 @@
     - if admin
       = link_to "Add Record",
         new_family_property_maintenance_record_path(family, parent),
-        class: "action-btn btn btn-primary"
+        class: "action-btn btn btn-success"
 
   - if parent.maintenance_records.any?
     .maintenance-records

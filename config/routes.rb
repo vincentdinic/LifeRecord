@@ -51,6 +51,10 @@ Rails.application.routes.draw do
       resources :maintenance_records, shallow: true
       resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
     end
+    resources :vehicles do
+      resources :maintenance_records, shallow: true
+      resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+    end
   end
 
   # Defines the root path route ("/")
