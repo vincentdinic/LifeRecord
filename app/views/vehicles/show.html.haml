@@ -1,0 +1,92 @@
+- admin = @current_family.admin?(current_user)
+
+.container
+  .header-card
+    .row.align-items-center
+      .col-2
+        .record-actions
+          = link_to "Back",
+            family_vehicles_path(@current_family),
+            class: "action-btn btn btn-secondary"
+      .col-8.text-center
+        %h1
+          = @vehicle.display_name
+      .col-2
+        - if admin
+          .record-actions.justify-content-end
+            = link_to "Edit",
+              edit_family_vehicle_path(@current_family, @vehicle),
+              class: "btn btn-primary action-btn"
+
+  .body-card
+    %h3.mb-3 Vehicle Details
+
+    .row.align-items-center
+      .col-12.col-md-10
+        .row.mb-3
+          .col-4.col-md-3
+            %strong Type
+            %br
+            = @vehicle.vehicle_type.humanize
+          - if @vehicle.fuel_type.present?
+            .col-4.col-md-3
+              %strong Fuel Type
+              %br
+              = @vehicle.fuel_type.humanize
+
+        .row.mb-3
+          .col-4.col-md-3
+            %strong Make
+            %br
+            = @vehicle.make
+          .col-4.col-md-3
+            %strong Model
+            %br
+            = @vehicle.model
+          - if @vehicle.year.present?
+            .col-4.col-md-3
+              %strong Year
+              %br
+              = @vehicle.year
+
+          - if @vehicle.color.present?
+            .col-4.col-md-3
+              %strong Color
+              %br
+              = @vehicle.color
+        - if @vehicle.vin.present? || @vehicle.license_plate.present?
+          .row.mb-3
+            - if @vehicle.vin.present?
+              .col-4.col-md-3
+                %strong VIN
+                %br
+                = @vehicle.vin
+            - if @vehicle.license_plate.present?
+              .col-4.col-md-3
+                %strong License Plate
+                %br
+                = @vehicle.license_plate
+
+        - if @vehicle.purchase_date.present? || @vehicle.purchase_price.present? || @vehicle.current_value.present?
+          .row.mb-3
+            - if @vehicle.purchase_date.present?
+              .col-4.col-md-3
+                %strong Purchase Date
+                %br
+                = @vehicle.purchase_date
+            - if @vehicle.purchase_price.present?
+              .col-4.col-md-3
+                %strong Purchase Price
+                %br
+                = number_to_currency(@vehicle.purchase_price)
+            - if @vehicle.current_value.present?
+              .col-4.col-md-3
+                %strong Current Value
+                %br
+                = number_to_currency(@vehicle.current_value)
+
+  = render "maintenance_records/list", parent: @vehicle, family: @current_family, admin: admin
+
+  = render "documents/list",
+           documents: @vehicle.documents,
+           new_record_path: new_family_vehicle_document_path(@current_family, @vehicle)
