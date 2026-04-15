@@ -68,8 +68,10 @@
             %strong Purchase Date
             %br
             = @property.purchase_date || "-"
-  = render "maintenance_records/list", parent: @property, family: @current_family, admin: admin
-
+  = render "maintenance_records/list",
+           parent: @property,
+           admin: admin,
+           new_record_path: new_family_property_maintenance_record_path(@current_family, @property)
   = render "documents/list",
            documents: @property.documents,
            new_record_path: new_family_property_document_path(@current_family, @property) 

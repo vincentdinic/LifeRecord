@@ -3,7 +3,7 @@
     %h3.mb-0 Maintenance History
     - if admin
       = link_to "Add Record",
-        new_family_property_maintenance_record_path(family, parent),
+        local_assigns[:new_record_path],
         class: "action-btn btn btn-success"
 
   - if parent.maintenance_records.any?
