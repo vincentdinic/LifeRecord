@@ -8,12 +8,11 @@
       - if @current_family.admin?(current_user)
         .col-2
           .record-actions.justify-content-end
-            // Convert from bootstrap collapse to modal toggle
             .btn.btn-success{
               type: "button",
               data: {
-                bs_toggle: "collapse",
-                bs_target: "#new-event-form"
+                bs_toggle: "modal",
+                bs_target: "#new-event-modal"
               } }
               New Event
   .body-card
@@ -26,8 +25,6 @@
       Event Filters
     .collapse#event-filters.mt-3
       Filters Coming Soon
-    // TODO - change to modal
-    .collapse#new-event-form
-      = render "events/form", event: @event
+    = render "events/form", event: @event
 
     = render "calendar"
