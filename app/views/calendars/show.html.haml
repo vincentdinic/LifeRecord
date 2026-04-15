@@ -1,21 +1,23 @@
 .container
   .header-card
     .row
-      .col-10
+      .col-2
+      .col-8
         %h1
           #{@current_family.name}'s Calendar
       - if @current_family.admin?(current_user)
         .col-2
-          // Convert from bootstrap collapse to modal toggle
-          %span.btn.btn-primary{
-            type: "button",
-            data: {
-              bs_toggle: "collapse",
-              bs_target: "#new-event-form"
-            } }
-            New Event
+          .record-actions.justify-content-end
+            // Convert from bootstrap collapse to modal toggle
+            .btn.btn-success{
+              type: "button",
+              data: {
+                bs_toggle: "collapse",
+                bs_target: "#new-event-form"
+              } }
+              New Event
   .body-card
-    %button.btn.btn-success.ms-4{
+    %button.btn.btn-primary.ms-4{
       type: "button",
       data: {
         bs_toggle: "collapse",
