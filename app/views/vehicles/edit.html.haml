@@ -1,7 +1,16 @@
 - content_for :title, "Edit Vehicle"
 .container.w-50
   .header-card
-    %h1 Edit Vehicle
+    .row
+      .col-2
+      .col-8 
+        %h1 Edit Vehicle
+      .col-2
+        .record-actions.mb-1.justify-content-end
+          = button_to "Destroy", family_vehicle_path(@current_family, @vehicle),
+            method: :delete,
+            class: "action-btn btn btn-danger",
+            data: { turbo_confirm: "Are you sure you want to delete this vehicle?" }
   .body-card
     = render "form"
     .mt-1

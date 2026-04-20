@@ -15,9 +15,24 @@
   .body-card.text-center
     .h3
       Create an Account
-    .d-flex.justify-content-center
+    .row.mb-5.justify-content-center
       .w-50
         To begin managing your various assets and important documents, create an account today. Once logged in, you will be able to create a family to manage or join an existing one. 
+    .row.mb-1.justify-content-center
+      .w-50
+        %h6 Through Life Record, you are able to:
+    .row.justify-content-center
+      .ol.list-group.list-group-numbered.mb-5.w-50
+        .li.list-group-item
+          Manage Important Information & Documents
+        .li.list-group-item
+          Create Events through a Family Calendar
+        .li.list-group-item 
+          Track Financial Accounts & Due Dates
+        .li.list-group-item
+          Manage Property Information & Documents
+        .li.list-group-item
+          Manage Vehicle Information & Maintenance Information
     .mt-1
       = link_to "Sign Up", new_user_registration_path, class: "btn btn-primary"
   

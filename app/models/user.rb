@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :employment_records, dependent: :destroy
   has_many :documents, as: :documentable, dependent: :destroy
 
+  scope :eldest, -> { order(birthday: :asc) }
+
   def full_name
     "#{first_name} #{last_name}"
   end

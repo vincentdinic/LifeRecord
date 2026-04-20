@@ -1,20 +1,29 @@
 .container
   .header-card
-    %h1
-      #{@current_family.name}'s Calendar
+    .row
+      .col-2
+      .col-8
+        %h1
+          #{@current_family.name}'s Calendar
+      - if @current_family.admin?(current_user)
+        .col-2
+          .record-actions.justify-content-end
+            .btn.btn-success{
+              type: "button",
+              data: {
+                bs_toggle: "modal",
+                bs_target: "#new-event-modal"
+              } }
+              New Event
   .body-card
-    - if @current_family.admin?(current_user)
-      %button.btn.btn-primary.action-btn.ms-4{
-        type: "button",
-        data: {
-          bs_toggle: "collapse",
-          bs_target: "#new-event-form"
-        },
-        aria: { expanded: "false", controls: "new-event-form" }
-      }
-        New Event
-    .d-flex.gap-3
-      .collapse#new-event-form
-        = render "events/form", event: @event
-      .flex-grow-1
-        = render "calendar"
+    %button.btn.btn-primary{
+      type: "button",
+      data: {
+        bs_toggle: "collapse",
+        bs_target: "#event-filters"
+      } }
+      Toggle Filters
+    = render "events/filters"
+    = render "events/form", event: @event
+
+    = render "calendar"

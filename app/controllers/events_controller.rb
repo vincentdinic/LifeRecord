@@ -16,6 +16,8 @@ class EventsController < ApplicationController
 
   def index
     @events = @family.events
+                    .filter_events(params)
+                    .distinct
     respond_to do |format|
       format.json do
         render json: @events.map { |event|

@@ -11,7 +11,7 @@
     - user.education_records.order(start_date: :desc).each do |record|
       .education-record.border.rounded.p-3.mb-2.position-relative
         .d-flex.justify-content-between.align-items-start
-          = link_to record.school_name,
+          = link_to record.school_name.titleize,
             education_record_path(record),
             class: "fw-bold stretched-link text-decoration-none text-dark"
           - if record.current?

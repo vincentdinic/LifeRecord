@@ -85,7 +85,10 @@
                 %br
                 = number_to_currency(@vehicle.current_value)
 
-  = render "maintenance_records/list", parent: @vehicle, family: @current_family, admin: admin
+  = render "maintenance_records/list",
+           parent: @vehicle,
+           admin: admin, 
+           new_record_path: new_family_vehicle_maintenance_record_path(@current_family, @vehicle)
 
   = render "documents/list",
            documents: @vehicle.documents,

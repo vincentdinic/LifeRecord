@@ -1,26 +1,34 @@
-.container
-  .body-card
-    %h3.mb-3
-      %strong
-        New Event
-    = form_with(model: [@current_family, event]) do |form|
-      .form-group.mb-3
-        = form.label :title, "Event Title", class: "form-label"
-        = form.text_field :title, required: true, class: "form-control"
-      .form-group.mb-3
-        = form.label :description, "Event Description", class: "form-label"
-        = form.textarea :description, class: "form-control"
-      .form-group.mb-3
-        = form.label :start_time, "Event Start", class: "form-label"
-        = form.datetime_local_field :start_time, class: "form-control"
-      .form-group.mb-3
-        = form.label :end_time, "Event End", class: "form-label"
-        = form.datetime_local_field :end_time, class: "form-control"
-      .form-group.mb-3
-        = form.label :user_ids, "Users", class: "form-label"
-        - @current_family.users.each do |user|
-          .form-check
-            = check_box_tag "event[user_ids][]", user.id, false, class: "form-check-input", id: "user_#{user.id}"
-            = label_tag "user_#{user.id}", "#{user.full_name}" , class: "form-check-label"
-      .record-actions
-        = form.submit "Save", class: "action-btn btn btn-success"
+.modal.fade#new-event-modal{ tabindex: "-1", aria: { labelledby: "newEventModal" }} 
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h3.modal-title#newEventModal
+          %strong
+            New Event
+        %button.btn-close{type: "button", data: {bs_dismiss: "modal"}, aria: {label: "Close"}}
+
+      .modal-body
+        = form_with(model: [@current_family, event]) do |form|
+          .form-group.mb-3.w-50
+            = form.label :title, "Event Title *", class: "form-label"
+            = form.text_field :title, required: true, class: "form-control"
+          .form-group.mb-3
+            = form.label :description, "Event Description", class: "form-label"
+            = form.textarea :description, class: "form-control"
+          .d-flex
+            .form-group.mb-3.w-50.me-2
+              = form.label :start_time, "Event Start *", class: "form-label"
+              = form.datetime_local_field :start_time, class: "form-control",
+                                                      required: true
+            .form-group.mb-3.w-50
+              = form.label :end_time, "Event End *", class: "form-label"
+              = form.datetime_local_field :end_time, class: "form-control",
+                                                    required: true
+          .form-group.mb-3
+            = form.label :user_ids, "Users", class: "form-label"
+            - @current_family.users.each do |user|
+              .form-check
+                = check_box_tag "event[user_ids][]", user.id, false, class: "form-check-input", id: "user_#{user.id}"
+                = label_tag "user_#{user.id}", "#{user.full_name}" , class: "form-check-label"
+          .modal-footer
+            = form.submit "Save", class: "action-btn btn btn-success"

@@ -15,7 +15,7 @@
       - user.employment_records.order(start_date: :desc).each do |record|
         .employment-record.border.rounded.p-3.mb-2.position-relative
           .d-flex.justify-content-between.align-items-start
-            = link_to record.company_name,
+            = link_to record.company_name.titleize,
               employment_record_path(record),
               class: "fw-bold stretched-link text-decoration-none text-dark"
             - if record.current?
@@ -36,3 +36,5 @@
               -
             %span.text-muted.small
               = [record.city, record.state].compact.join(", ")
+  - else
+    %p.text-muted No employment records yet.

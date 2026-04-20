@@ -18,7 +18,7 @@
       %ul.list-group
         .users
           = render "users/user", user: current_user
-        - @family.users.reverse.each do |family_member|
+        - @family.users.eldest.each do |family_member|
           - unless family_member == current_user
             = render "users/user", user: family_member
     - else
