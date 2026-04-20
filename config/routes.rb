@@ -40,7 +40,9 @@ Rails.application.routes.draw do
     end
 
     resources :family_users, only: [ :index, :create, :update, :destroy ]
-    resources :accounts
+    resources :accounts do
+      resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+    end
     resource :calendar, only: [ :show ]
     resources :events do
       collection do

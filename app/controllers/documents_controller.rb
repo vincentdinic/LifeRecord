@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :set_parent, only: [ :index, :new, :create ]
+  before_action :set_parent, only: [ :index, :new, :create, :destroy ]
   before_action :set_document, only: [ :show, :destroy ]
   helper_method :form_url
 
@@ -27,7 +27,7 @@ class DocumentsController < ApplicationController
 
   def destroy
     @document.destroy
-    redirect_back fallback_location: document_path(@document), notice: "Document successfullyt deleted."
+    redirect_to after_save_path, notice: "Document successfully deleted.", status: :see_other
   end
 
   private
@@ -45,6 +45,8 @@ class DocumentsController < ApplicationController
       @parent = User.find(params[:user_id])
     elsif params[:vehicle_id]
       @parent = Vehicle.find(params[:vehicle_id])
+    elsif params[:account_id]
+      @parent = @current_family.accounts.find(params[:account_id])
     end
   end
 
@@ -62,6 +64,8 @@ class DocumentsController < ApplicationController
       education_record_path(@parent)
     elsif @parent.is_a?(EmploymentRecord)
       employment_record_path(@parent)
+    elsif @parent.is_a?(Account)
+      family_account_path(@current_family, @parent)
     else
       polymorphic_path([ @current_family, @parent ])
     end
@@ -79,6 +83,8 @@ class DocumentsController < ApplicationController
       education_record_documents_path(@parent)
     elsif @parent.is_a?(EmploymentRecord)
       employment_record_documents_path(@parent)
+    elsif @parent.is_a?(Account)
+      family_account_documents_path(@current_family, @parent)
     else
       polymorphic_path([ @current_family, @parent, @document ])
     end
