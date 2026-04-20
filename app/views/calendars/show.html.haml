@@ -16,15 +16,14 @@
               } }
               New Event
   .body-card
-    %button.btn.btn-primary.ms-4{
+    %button.btn.btn-primary{
       type: "button",
       data: {
         bs_toggle: "collapse",
         bs_target: "#event-filters"
       } }
-      Event Filters
-    .collapse#event-filters.mt-3
-      Filters Coming Soon
+      Toggle Filters
+    = render "events/filters"
     = render "events/form", event: @event
 
     = render "calendar"

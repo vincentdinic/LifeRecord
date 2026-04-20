@@ -25,7 +25,20 @@ document.addEventListener('turbo:load', () => {
     buttonIcons:
     { prev: 'chevron-left',
       next: 'chevron-right' },
-    events: `/families/${familyId}/events.json`
+    events: function(fetchInfo, successCallback, failureCallback) {
+      const url = new URL(`/families/${familyId}/events.json`, window.location.origin);
+
+      const params = new URLSearchParams(window.location.search);
+
+      params.forEach((value, key) => {
+        url.searchParams.append(key, value);
+      });
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => successCallback(data))
+        .catch(error => failureCallback(error));
+    }
   })
 
   calendar.render()
