@@ -16,8 +16,14 @@
         required: true
 
   .form-group.mb-3
-    = form.label :file, "File *", class: "form-label"
-    = form.file_field :file, required: true, class: "form-control", accept: "application/pdf,image/*"
+    = form.label :file, "File", class: "form-label"
+    - if @document.file.attached?
+      .form-text.mb-2
+        Current file:
+        = link_to @document.file.filename, url_for(@document.file), target: "_blank"
+    = form.file_field :file, required: !@document.file.attached?, class: "form-control", accept: "application/pdf,image/*"
+    - if @document.file.attached?
+      .form-text Leave blank to keep the current file.
 
   .record-actions
-    = form.submit "Upload", class: "action-btn btn btn-success"
+    = form.submit "Save", class: "action-btn btn btn-success"

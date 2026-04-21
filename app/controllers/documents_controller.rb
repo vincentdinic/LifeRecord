@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_parent, only: [ :index, :new, :create, :destroy ]
-  before_action :set_document, only: [ :show, :destroy ]
+  before_action :set_document, only: [ :show, :edit, :update, :destroy ]
   helper_method :form_url
 
   def index
@@ -28,6 +28,18 @@ class DocumentsController < ApplicationController
   def destroy
     @document.destroy
     redirect_to after_save_path, notice: "Document successfully deleted.", status: :see_other
+  end
+
+  def edit
+    @parent = @document.documentable
+  end
+
+  def update
+    if @document.update(document_params)
+      redirect_to document_path(@document), notice: "Document updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
