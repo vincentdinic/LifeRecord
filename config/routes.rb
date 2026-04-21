@@ -14,19 +14,19 @@ Rails.application.routes.draw do
   resources :users, only: [ :show, :edit, :update ] do
     resources :education_records, shallow: true
     resources :employment_records, shallow: true
-    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :edit, :update,  :destroy ]
   end
 
   resources :education_records, only: [] do
-    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :edit, :update,  :destroy ]
   end
 
   resources :employment_records, only: [] do
-    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :edit, :update,  :destroy ]
   end
 
   resources :maintenance_records, only: [] do
-    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+    resources :documents, shallow: true, only: [ :index, :new, :create, :show, :edit, :update,  :destroy ]
   end
 
   resources :families do
@@ -40,7 +40,9 @@ Rails.application.routes.draw do
     end
 
     resources :family_users, only: [ :index, :create, :update, :destroy ]
-    resources :accounts
+    resources :accounts do
+      resources :documents, shallow: true, only: [ :index, :new, :create, :show, :edit, :update,  :destroy ]
+    end
     resource :calendar, only: [ :show ]
     resources :events do
       collection do
@@ -49,11 +51,11 @@ Rails.application.routes.draw do
     end
     resources :properties do
       resources :maintenance_records, shallow: true
-      resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+      resources :documents, shallow: true, only: [ :index, :new, :create, :show, :edit, :update,  :destroy ]
     end
     resources :vehicles do
       resources :maintenance_records, shallow: true
-      resources :documents, shallow: true, only: [ :index, :new, :create, :show, :destroy ]
+      resources :documents, shallow: true, only: [ :index, :new, :create, :show, :edit, :update,  :destroy ]
     end
   end
 

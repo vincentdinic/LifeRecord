@@ -31,7 +31,7 @@ class MaintenanceRecordsController < ApplicationController
 
   def update
     if @maintenance_record.update(maintenance_record_params)
-      redirect_to polymorphic_path([ @current_family, @maintenance_record.maintainable ]), notice: "Maintenance record successfullyupdated"
+      redirect_to polymorphic_path([ @current_family, @maintenance_record.maintainable ]), notice: "Maintenance record successfully updated"
     else
       render :edit, status: :unprocessable_entity
     end

@@ -4,6 +4,10 @@ body {
   background: linear-gradient(145deg, #cfe0f5 0%, #dce9f7 50%, #d4e4f5 100%);
   min-height: 100vh;
 }
+nav{
+  border-bottom: 3px solid $primary;
+  border-radius: 0 0 12px 12px;
+}
 
 .header-card {
   margin-top: 50px;

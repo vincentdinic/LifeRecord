@@ -9,6 +9,11 @@
       .col-8.text-center
         %h1 Edit Maintenance Record
       .col-2
-
+        .record-actions.mb-1.justify-content-end
+          = button_to "Destroy",
+            polymorphic_path([@current_family, @maintenance_record.maintainable]),
+            method: :delete,
+            class: "action-btn btn btn-danger",
+            data: { turbo_confirm: "Are you sure you want to delete this maintenance record?" }
   .body-card
     = render "form"

@@ -1,4 +1,5 @@
 - admin = @current_family.admin?(current_user)
+- ui_date = @account.next_due_date
 
 .container
   .header-card
@@ -22,4 +23,9 @@
     %h3.mb-3 Account Details
     .text
       %strong Due date:
-      = @account.due_date
+      %br
+      = ui_date.strftime("%B #{ui_date.day.ordinalize}")
+
+  = render "documents/list",
+           documents: @account.documents,
+           new_record_path: new_family_account_document_path(@current_family, @account)

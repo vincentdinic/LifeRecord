@@ -9,6 +9,11 @@
       .col-8.text-center
         %h1 Edit Education Record
       .col-2
-
+        .record-actions.justify-content-end
+          = button_to "Delete",
+            education_record_path(@education_record),
+            method: :delete,
+            class: "action-btn btn btn-danger",
+            data: { turbo_confirm: "Are you sure you want to delete this education record?" }
   .body-card
     = render "form"

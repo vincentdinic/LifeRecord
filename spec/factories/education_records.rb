@@ -9,7 +9,7 @@ FactoryBot.define do
     state          { Faker::Address.state }
     country        { "United States" }
     start_date     { Faker::Date.backward(days: 3650) }
-    current        { [ true, false, false, false ].sample }
+    current        { false } # Change this later, I want to remove it and have projected end
 
     after(:build) do |record|
       if record.current?

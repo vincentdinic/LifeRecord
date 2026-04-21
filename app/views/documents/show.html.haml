@@ -12,10 +12,9 @@
       .col-2
         - if admin
           .record-actions.justify-content-end
-            = link_to "Delete",
-              document_path(@document),
-              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-              class: "btn btn-danger action-btn"
+            = link_to "Edit",
+              edit_document_path(@document),
+              class: "btn btn-primary action-btn"
 
   .body-card
     %h3.mb-3 Document Details
