@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :family
-  has_many :user_events
+  has_many :user_events, dependent: :destroy
   has_many :users, through: :user_events
 
   scope :by_name, ->(name) { where("title ILIKE ?", "%#{name}%") if name.present? }

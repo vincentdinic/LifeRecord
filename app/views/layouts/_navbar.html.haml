@@ -18,14 +18,14 @@
               - if current_user.families.size > 1
                 = link_to "Families",
                           "#",
-                          class: "nav-link dropdown-toggle",
+                          class: "nav-link dropdown-toggle #{nav_link_class(family_path(@current_family))}",
                           role: "button",
                           data: { bs_toggle: "dropdown" },
                           aria: { expanded: "false" }
 
                 %ul.dropdown-menu.dropdown-menu-dark.bg-dark
                   - current_user.families.each do |family|
-                    - family_class = family == @current_family ? "dropdown-item text-primary" : "dropdown-item"
+                    - family_class = family == @current_family ? "dropdown-item text-info" : "dropdown-item"
                     %li
                       = link_to family.name,
                                 family_path(family),
@@ -35,7 +35,7 @@
                         %hr.dropdown-divider.border-light.opacity-25
 
               - else
-                = link_to "Family", family_path(@current_family), class: "nav-link"
+                = link_to "Family", family_path(@current_family), class: nav_link_class(family_path(@current_family))
               %li.nav-item.me-5
                 = link_to "Calendar", family_calendar_path(@current_family), class: nav_link_class(family_calendar_path(@current_family))
               %li.nav-item.me-5
