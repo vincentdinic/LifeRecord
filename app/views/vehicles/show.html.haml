@@ -22,7 +22,7 @@
     %h3.mb-3 Vehicle Details
 
     .row.align-items-center
-      .col-12.col-md-10
+      .col-12.col-md-8
         .row.mb-3
           .col-4.col-md-3
             %strong Type
@@ -49,23 +49,24 @@
               %br
               = @vehicle.year
 
-          - if @vehicle.color.present?
-            .col-4.col-md-3
-              %strong Color
-              %br
-              = @vehicle.color
-        - if @vehicle.vin.present? || @vehicle.license_plate.present?
+        - if @vehicle.vin.present? || @vehicle.license_plate.present? || @vehicle.color.present?
           .row.mb-3
-            - if @vehicle.vin.present?
+            - if @vehicle.color.present?
               .col-4.col-md-3
-                %strong VIN
+                %strong Color
                 %br
-                = @vehicle.vin
+                = @vehicle.color
+
             - if @vehicle.license_plate.present?
               .col-4.col-md-3
                 %strong License Plate
                 %br
                 = @vehicle.license_plate
+            - if @vehicle.vin.present?
+              .col-4.col-md-3
+                %strong VIN
+                %br
+                = @vehicle.vin
 
         - if @vehicle.purchase_date.present? || @vehicle.purchase_price.present? || @vehicle.current_value.present?
           .row.mb-3
@@ -84,6 +85,9 @@
                 %strong Current Value
                 %br
                 = number_to_currency(@vehicle.current_value)
+      - if @vehicle.image.attached?
+        .col-12.col-md-4.text-end
+          = image_tag @vehicle.image.variant(resize_to_fill: [400, 250]), class: "rounded shadow-sm img-fluid"
 
   = render "maintenance_records/list",
            parent: @vehicle,

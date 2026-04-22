@@ -25,7 +25,7 @@
 
                 %ul.dropdown-menu.dropdown-menu-dark.bg-dark
                   - current_user.families.each do |family|
-                    - family_class = family == @current_family ? "dropdown-item text-info" : "dropdown-item"
+                    - family_class = family == @current_family ? "dropdown-item text-info fw-bold" : "dropdown-item"
                     %li
                       = link_to family.name,
                                 family_path(family),
