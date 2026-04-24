@@ -23,7 +23,7 @@ class AccountsController < ApplicationController
       @accounts = @current_family.accounts
       redirect_to family_accounts_path(@current_family), notice: "Account was successfully created."
     else
-      render :new, status: :unprocessable_content
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +32,7 @@ class AccountsController < ApplicationController
     if @account.update(account_params)
       redirect_to family_account_path(@current_family, @account), notice: "Account was successfully updated.", status: :see_other
     else
-      render :edit, status: :unprocessable_content
+      render :edit, status: :unprocessable_entity
     end
   end
 

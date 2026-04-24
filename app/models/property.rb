@@ -4,6 +4,9 @@ class Property < ApplicationRecord
   has_many :documents, as: :documentable, dependent: :destroy
   has_one_attached :image
 
+  validates :name, :street, :city, :state, :zip_code, :country,
+            :bedrooms, :bathrooms, :occupancy_status, :ownership_status, presence: true
+
   enum :occupancy_status, {
     primary: 0,
     secondary: 1,

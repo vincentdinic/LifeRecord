@@ -1,15 +1,15 @@
 = form_with(model: [@current_family, @account]) do |form|
+  = render "shared/errors", object: @account
   .form-group.mb-3
     = form.label :name, "Account Name", class: "form-label"
-    = form.text_field :name, required: true, class: "form-control w-50"
+    = form.text_field :name, class: "form-control w-50"
 
   .form-group.mb-3
     = form.label :due_date, class: "form-label"
     .d-flex.align-content-between
 
       = form.date_select :due_date,
-      { required: true,
-        discard_year: true,
+      { discard_year: true,
         order: [:month, :day]},
       {class: "form-select me-2 form-date"}
 

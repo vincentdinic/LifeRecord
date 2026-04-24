@@ -1,7 +1,8 @@
 = form_with(model: [@current_family, @property], html: { multipart: true }) do |form|
+  = render "shared/errors", object: @property
   .form-group.mb-3
     = form.label :name, "Property Name *", class: "form-label"
-    = form.text_field :name, required: true, class: "form-control"
+    = form.text_field :name, class: "form-control"
 
   .form-group.mb-3
     = form.label :description, "Description", class: "form-label"
@@ -9,22 +10,21 @@
 
   .form-group.mb-2
     = form.label :street, "Address *", class: "form-label"
-    = form.text_field :street, placeholder: "Street Address *", required: true, class: "form-control mb-2"
+    = form.text_field :street, placeholder: "Street Address *", class: "form-control mb-2"
 
   .d-flex.mb-2
     = form.text_field :unit, placeholder: "Unit", class: "form-control me-2 w-25"
-    = form.text_field :city, required: true, placeholder: "City *", class: "form-control"
+    = form.text_field :city, placeholder: "City *", class: "form-control"
 
   .d-flex.mb-3
-    = form.text_field :state, required: true, placeholder: "State *", class: "form-control me-2 w-25"
-    = form.text_field :zip_code, required: true, placeholder: "Zip Code *", class: "form-control me-2 w-25"
-    = form.text_field :country, placeholder: "Country *", required: true, class: "form-control"
+    = form.text_field :state, placeholder: "State *", class: "form-control me-2"
+    = form.text_field :zip_code, placeholder: "Zip Code *", class: "form-control me-2"
+    = form.text_field :country, placeholder: "Country *", class: "form-control"
 
   .d-flex.mb-3
     .form-group.me-2.w-15
       = form.label :bedrooms, "# Bedrooms *", class: "form-label"
       = form.number_field :bedrooms, class: "form-control",
-                                     required: true,
                                      min: 1,
                                      placeholder: 2
     .form-group.w-15
@@ -33,7 +33,6 @@
                                       min: 1,
                                       max: 99.5,
                                       step: 0.5,
-                                      required: true,
                                       placeholder: 1
   
   .d-flex.mb-3
@@ -59,16 +58,14 @@
       = form.select :occupancy_status,
         Property.occupancy_statuses.keys.map { |k| [k.humanize, k] },
         {},
-        class: "form-select",
-        required: true
+        class: "form-select"
 
     .form-group.w-50
       = form.label :ownership_status, "Ownership Status *", class: "form-label"
       = form.select :ownership_status,
         Property.ownership_statuses.keys.map { |k| [k.humanize, k] },
         {},
-        class: "form-select",
-        required: true
+        class: "form-select"        
   .d-flex.mb-3
     .form-group.w-40
       = form.label :image, "Property Image", class: "form-label"
