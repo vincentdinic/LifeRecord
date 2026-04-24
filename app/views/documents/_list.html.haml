@@ -3,7 +3,8 @@
 .body-card
   .d-flex.justify-content-between.align-items-center.mb-3
     %h3.mb-0
-      Documents
+      .d-flex
+        = documents.any? ? "Documents (#{documents.count})" : "Documents" 
       // TODO - change this so that a user can only add documents if it is their profile/record
       // - if is_own_profile
     - if admin
