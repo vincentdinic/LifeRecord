@@ -1,9 +1,10 @@
 - url = @maintenance_record.persisted? ? maintenance_record_path(@maintenance_record) : polymorphic_path([@current_family, @parent, @maintenance_record])
 
 = form_with(model: @maintenance_record, url: url) do |form|
+  = render "shared/errors", object: @maintenance_record
   .form-group.mb-3
     = form.label :title, "Title *", class: "form-label"
-    = form.text_field :title, required: true, class: "form-control"
+    = form.text_field :title, class: "form-control"
 
   .form-group.mb-3
     = form.label :description, "Description", class: "form-label"

@@ -1,18 +1,18 @@
 - url = @education_record.persisted? ? education_record_path(@education_record) : user_education_records_path(@user)
 
 = form_with(model: @education_record, url: url) do |form|
+  = render "shared/errors", object: @education_record
   .form-group.mb-3
     = form.label :school_name, "School Name *", class: "form-label"
-    = form.text_field :school_name, required: true, class: "form-control"
+    = form.text_field :school_name, class: "form-control"
 
   .d-flex.mb-3
     .form-group.me-2.w-50
       = form.label :degree_type, "Degree Type *", class: "form-label"
       = form.select :degree_type,
-          EducationRecord.degree_types.keys.map { |k| [k.humanize, k] },
-          { include_blank: "Select a type" },
-          class: "form-select",
-          required: true
+          EducationRecord.degree_types.keys.map { |k| [k.humanize.titleize, k] },
+          { include_blank: false },
+          class: "form-select"
 
     .form-group.w-50
       = form.label :field_of_study, "Field of Study", class: "form-label"
@@ -32,7 +32,7 @@
   .d-flex.mb-3
     .form-group.me-2.w-25
       = form.label :start_date, "Start Date *", class: "form-label"
-      = form.date_field :start_date, required: true, class: "form-control"
+      = form.date_field :start_date, class: "form-control"
     .form-group.w-25
       = form.label :end_date, "End Date", class: "form-label"
       = form.date_field :end_date, class: "form-control"

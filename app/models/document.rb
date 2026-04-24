@@ -15,4 +15,6 @@ class Document < ApplicationRecord
     tax: "tax",
     other: "other"
   }
+
+  validates :title, :document_type, presence: true
 end

@@ -1,7 +1,8 @@
 = form_with(model: @document, url: form_url, html: { multipart: true }) do |form|
+  = render "shared/errors", object: @document
   .form-group.mb-3
     = form.label :title, "Title *", class: "form-label"
-    = form.text_field :title, required: true, class: "form-control"
+    = form.text_field :title, class: "form-control"
 
   .form-group.mb-3
     = form.label :description, "Description", class: "form-label"
@@ -11,12 +12,11 @@
     = form.label :document_type, "Document Type *", class: "form-label"
     = form.select :document_type,
         Document.document_types.keys.map { |k| [k.humanize, k] },
-        { include_blank: "Select a type" },
-        class: "form-select",
-        required: true
+        { },
+        class: "form-select"
 
   .form-group.mb-3
-    = form.label :file, "File", class: "form-label"
+    = form.label :file, "File *", class: "form-label"
     - if @document.file.attached?
       .form-text.mb-2
         Current file:

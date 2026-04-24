@@ -1,10 +1,11 @@
 - url = @employment_record.persisted? ? employment_record_path(@employment_record) : user_employment_records_path(@user)
 
 = form_with(model: @employment_record, url: url) do |form|
+  = render "shared/errors", object: @employment_record
   // Company name *
   .form-group.mb-3
     = form.label :company_name, "Company Name *", class: "form-label"
-    = form.text_field :company_name, required: true, class: "form-control"
+    = form.text_field :company_name, class: "form-control"
   .d-flex.mb-3
     // Department
     .form-group.me-2.w-50
@@ -20,33 +21,30 @@
     .form-group.w-30.me-2
       = form.label :employment_type, "Employment Type *", class: "form-label"
       = form.select :employment_type, 
-                    EmploymentRecord.employment_types.keys.map { |k| [k.humanize, k] },
+                    EmploymentRecord.employment_types.keys.map { |k| [k.humanize.titleize, k] },
                     { selected: :full_time },
-                    class: "form-select",
-                    required: true
+                    class: "form-select"
     // Employment_status *
     .form-group.w-30.me-2
       = form.label :employment_status, "Employment Status *", class: "form-label"
       = form.select :employment_status,
                     EmploymentRecord.employment_statuses.keys.map { |k| [k.humanize, k] },
                     { selected: :active },
-                    class: "form-select",
-                    required: true
+                    class: "form-select"
     // Location_type *
     .form-group.w-30.me-2
       = form.label :location_type, "Location Type *", class: "form-label"
       = form.select :location_type,
-                    EmploymentRecord.location_types.keys.map { |k| [k.humanize, k] },
+                    EmploymentRecord.location_types.keys.map { |k| [k.humanize.titleize, k] },
                     { selected: :on_site },
-                    class: "form-select",
-                    required: true      
+                    class: "form-select"      
   .d-flex.mb-3
     // Salary_type
     .form-group.w-30.me-2
       = form.label :salary_type, "Salary Type *", class: "form-label"
       = form.select :salary_type,
-                    EmploymentRecord.salary_types.keys.map { |k| [k.humanize, k] },
-                    { include_blank: "Select salary type", selected: :annual },
+                    EmploymentRecord.salary_types.keys.map { |k| [k.humanize.titleize, k] },
+                    { selected: :annual },
                     class: "form-select"              
     // Salary_amount
     .form-group.w-30.me-2 
@@ -56,11 +54,11 @@
     .form-group.w-30 
       = form.label :pay_day, "Pay Day", class: "form-label"
       = form.text_field :pay_day, class: "form-control", placeholder: "e.g., 1st, 15th, Last of month"
-  .d-flex.mb-3
+  .d-flex.mb-1
     // Start_date *
     .form-group.me-2.w-25
       = form.label :start_date, "Start Date *", class: "form-label"
-      = form.date_field :start_date, required: true, class: "form-control"
+      = form.date_field :start_date, class: "form-control"
     .form-group
       // end_date
       .form-group
