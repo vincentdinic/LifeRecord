@@ -11,7 +11,7 @@ def seed_development
   seed_employment_records
   seed_documents
 end
-
+# Every time I seed it will make my account
 def seed_config
   3.times do
     FactoryBot.create :user
@@ -27,6 +27,7 @@ def seed_config
       FactoryBot.create :family_user, user: user, family: family
     end
   end
+  # Adds my car, my house, etc. with images
 end
 
 def seed_users

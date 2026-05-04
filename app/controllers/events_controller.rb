@@ -37,7 +37,7 @@ class EventsController < ApplicationController
     @event = @family.events.build(event_params)
 
     if @event.save
-      redirect_to family_calendar_path(@family), notice: "Event created"
+      redirect_to family_calendar_path(@family), notice: "Event was successfully created"
     else
       @events = @family.events.includes(:users)
       render "calendars/show", status: :unprocessable_entity

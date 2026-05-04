@@ -2,10 +2,10 @@ class Family < ApplicationRecord
   before_create :generate_join_code
   has_many :family_users, dependent: :destroy
   has_many :users, through: :family_users
-  has_many :accounts
-  has_many :events
-  has_many :properties
-  has_many :vehicles
+  has_many :accounts, dependent: :destroy
+  has_many :events, dependent: :destroy
+  has_many :properties, dependent: :destroy
+  has_many :vehicles, dependent: :destroy
 
   # returns the role of that specific user
   def role_for(user)

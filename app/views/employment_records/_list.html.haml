@@ -30,11 +30,14 @@
                 \-
             = record.role.titleize
           .d-flex.gap-2.mt-1
-            .small
           - if record.city.present?
             %span.text-muted.small.mt-2
               -
             %span.text-muted.small
               = [record.city, record.state].compact.join(", ")
+          - if record.current?
+            .d-flex.gap-2.mt-1
+              %span.text-muted.small
+                = record.start_date&.strftime("%b %Y")
   - else
     %p.text-muted No employment records yet.

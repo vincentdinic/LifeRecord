@@ -18,7 +18,7 @@
             %span.badge.bg-success Current
           - else
             %span.text-muted.small
-              = record.end_date&.strftime("%Y")
+              = record.start_date.strftime("%b %Y") + " - " + record.end_date.strftime("%b %Y")
 
         .mb-1.small
           = record.degree_type.humanize
@@ -26,11 +26,7 @@
           .mb-1.small.text-muted
             = record.field_of_study
         .d-flex.gap-2.mt-1
-          %span.text-muted.small
-            = record.start_date&.strftime("%Y")
           - if record.city.present?
-            %span.text-muted.small
-              \-
             %span.text-muted.small
               = [record.city, record.state].compact.join(", ")
           - if record.gpa.present?

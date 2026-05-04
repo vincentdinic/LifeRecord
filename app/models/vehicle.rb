@@ -4,8 +4,11 @@ class Vehicle < ApplicationRecord
   has_many :documents, as: :documentable, dependent: :destroy
   has_one_attached :image
 
-  ROAD_VEHICLES = %w[sedan truck suv minivan motor_home motorcycle].freeze
+  validates :make, :model, :vehicle_type, presence: true
+  validates :year, numericality: { greater_than: 1885, less_than_or_equal_to: Date.today.year + 1 }, allow_nil: true
+  validates :purchase_price, :current_value, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
+  ROAD_VEHICLES = %w[sedan truck suv minivan motor_home motorcycle].freeze
 
   enum :vehicle_type, {
     sedan: "sedan",

@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   scope :eldest, -> { order(birthday: :asc) }
 
+  validates :first_name, :last_name, :email, :birthday, presence: true
+
   def full_name
     "#{first_name} #{last_name}"
   end

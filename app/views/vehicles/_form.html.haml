@@ -1,12 +1,12 @@
 = form_with(model: [@current_family, @vehicle], html: { multipart: true }) do |form|
+  = render "shared/errors", object: @vehicle
   .d-flex.mb-3
     .form-group.me-2.w-50
       = form.label :vehicle_type, "Vehicle Type *", class: "form-label"
       = form.select :vehicle_type,
           Vehicle.vehicle_types.keys.map { |k| [k.humanize, k] },
           { selected: :sedan },
-          class: "form-select",
-          required: true
+          class: "form-select"
 
     .form-group.w-50
       = form.label :nickname, "Nickname", class: "form-label"
@@ -15,11 +15,11 @@
   .d-flex.mb-3
     .form-group.me-2.w-50
       = form.label :make, "Make *", class: "form-label"
-      = form.text_field :make, required: true, class: "form-control"
+      = form.text_field :make, class: "form-control"
 
     .form-group.w-50
       = form.label :model, "Model *", class: "form-label"
-      = form.text_field :model, required: true, class: "form-control"
+      = form.text_field :model, class: "form-control"
 
   .d-flex.mb-3
     .form-group.me-2.w-25

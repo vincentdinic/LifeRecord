@@ -23,11 +23,11 @@
     %h3.mb-3 Property Details
 
     .row.align-items-center
-      .col-12.col-md-10
-        .row.mb-3
+      .col-12.col-md-8
+        .row.mb-2
           - if @property.description.present?
             .col-10.col-md-10
-              %p.text-muted
+              .text-muted
                 = @property.description
 
         .row.mb-4
@@ -68,6 +68,11 @@
             %strong Purchase Date
             %br
             = @property.purchase_date || "-"
+
+      - if @property.image.attached?
+        .col-12.col-md-4.text-end
+          = image_tag @property.image.variant(resize_to_fill: [400, 250]), class: "rounded shadow-sm img-fluid"
+
   = render "maintenance_records/list",
            parent: @property,
            admin: admin,
